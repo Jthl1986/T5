@@ -519,7 +519,7 @@ def app5():
 
         fig = ff.create_bullet(
             df, markers='markers', measures='measures',
-            ranges='ranges', subtitles='subtitle', titles='title',
+            ranges='ranges', subtitles='subtitle',
         )
         right.plotly_chart(fig, use_container_width=True)
 
