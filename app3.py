@@ -511,29 +511,31 @@ def app5():
         st.dataframe(dfp.style.format({"Superficie (has)":"{:.0f}", "Rinde":"{:,}", "Ingreso":"${:,}", "Costos directos":"${:,}", "Gastos comercialización":"${:,}", "Margen bruto":"${:,}"}))
 
 
-        
         # Obtener la lista de cultivos
         cultivos = dfp['Cultivo'].unique()
         
         # Crear una lista de diccionarios con los datos de cada cultivo
         data = []
-        color_scale = px.colors.qualitative.Alphabet # lista de colores
         for i, cultivo in enumerate(cultivos):
             d = {}
             df_cultivo = dfp[dfp['Cultivo'] == cultivo]
-            d['title'] = cultivo
-            d['subtitle'] = 'Rinde'
-            d['ranges'] = [df_cultivo['Rinde'].min(), df_cultivo['Rinde'].max(), df_cultivo['Rinde'].mean()]
-            d['measures'] = [df_cultivo['Rinde'].iloc[-1]]
-            d['markers'] = [df_cultivo['Rinde'].iloc[-1]]
-            d['marker_color'] = color_scale[i] # asignar color diferente a cada cultivo
-            d['range_color'] = color_scale[i] # asignar color diferente a cada cultivo
+            d['label'] = cultivo
+            d['sublabel'] = 'Rinde'
+            d['range'] = [df_cultivo['Rinde'].min(), df_cultivo['Rinde'].max(), df_cultivo['Rinde'].mean()]
+            d['performance'] = [df_cultivo['Rinde'].iloc[-1]]
+            d['point'] = [df_cultivo['Rinde'].iloc[-1]]
             data.append(d)
         
         # Crear el gráfico de bullet
         fig = ff.create_bullet(
-            data, orientation='h', markers='markers', measures='measures',
-            ranges='ranges', range_color='range_color', marker_colors='marker_color'
+            data, 
+            titles='label',
+            subtitles='sublabel',
+            markers='point',
+            measures='performance',
+            ranges='range',
+            orientation='h',
+            title='Rendimiento de cultivos'
         )
         
         # Eliminar títulos y subtítulos
