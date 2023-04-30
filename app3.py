@@ -510,6 +510,16 @@ def app5():
         # Tabla dataframe entero
         st.dataframe(dfp.style.format({"Superficie (has)":"{:.0f}", "Rinde":"{:,}", "Ingreso":"${:,}", "Costos directos":"${:,}", "Gastos comercialización":"${:,}", "Margen bruto":"${:,}"}))
 
+
+        # Cargar el archivo CSV
+        url = 'https://raw.githubusercontent.com/mwaskom/seaborn-data/master/anscombe.csv'
+        df = pd.read_csv(url)
+        
+        # Agregar una columna con el cultivo correspondiente a cada fila
+        dfp = df.copy()
+        dfp['Cultivo'] = ['Cultivo A', 'Cultivo B', 'Cultivo C', 'Cultivo D', 'Cultivo E',
+                          'Cultivo F', 'Cultivo G', 'Cultivo H', 'Cultivo I', 'Cultivo J']
+        
         # Obtener la lista de cultivos
         cultivos = dfp['Cultivo'].unique()
         
@@ -525,8 +535,13 @@ def app5():
             d['markers'] = [df_cultivo['Rinde'].iloc[-1]]
             data.append(d)
         
-        measure_colors = ['rgb(63,102,153)', 'rgb(120,194,195)']
-        range_colors = ['rgb(245,225,218)', 'rgb(241,241,241)']
+        # Definir la paleta de colores
+        n_cultivos = len(cultivos)
+        palette = sns.color_palette("bright", n_cultivos)
+        
+        # Definir los colores de los marcadores y rangos
+        measure_colors = palette
+        range_colors = palette[::-1]
         
         # Crear el gráfico de bullet
         fig = ff.create_bullet(
