@@ -537,7 +537,7 @@ def app5():
         ax.axvline(x=5500, color='gray', linestyle='--')
         
         # Show the plot
-        right.plotly_chart(fig1, use_container_width=True)
+        right.plotly_chart(fig, use_container_width=True)
 
 
     if dfp is not None and df1 is None:
