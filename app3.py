@@ -511,30 +511,41 @@ def app5():
         st.dataframe(dfp.style.format({"Superficie (has)":"{:.0f}", "Rinde":"{:,}", "Ingreso":"${:,}", "Costos directos":"${:,}", "Gastos comercialización":"${:,}", "Margen bruto":"${:,}"}))
 
 
-        # Create data
-        cultivos = ['Cultivo 1', 'Cultivo 2', 'Cultivo 3']
-        rinde = [5000, 7000, 4000]
-        range_data = [3000, 6000, 9000]
+
+        # Create a list of colors
+        colors = ["#19d228", "#b4dd1e", "#f4fb16", "#f6d32b", "#fb7116"]
         
-        # Set up the plot
-        fig, ax = plt.subplots()
+        # Extract the data from the DataFrame
+        cultivos = dfp["Cultivo"]
+        rendimientos = dfp["Rinde"]
         
-        # Plot the range bars
-        for i, val in enumerate(range_data):
-            ax.barh(i, val, color='lightgray', height=0.5, edgecolor='black', linewidth=1)
+        # Define the figure size
+        fig = plt.figure(figsize=(20,4))
         
-        # Plot the measure bars
-        for i, val in enumerate(rinde):
-            ax.barh(i, val, color='green', height=0.2, edgecolor='black', linewidth=1)
+        # Add a subplot
+        ax = fig.add_subplot(1,1,1)
         
-        # Add labels
-        ax.set_yticks(range(len(cultivos)))
-        ax.set_yticklabels(cultivos)
-        ax.set_xlabel('Rinde')
-        ax.set_xlim(0, max(range_data))
+        # Create the horizontal bar chart
+        plt.barh(y=[0,1,2,3,4], width=rendimientos, color=colors)
         
-        # Add a vertical line to indicate the target
-        ax.axvline(x=5500, color='gray', linestyle='--')
+        # Add the black line representing the target or goal
+        plt.barh(y=[5], width=[dfp["Rinde"].mean()], color="black", height=0.4)
+        
+        # Add the vertical line representing the current performance
+        plt.vlines(x=dfp["Rinde"].iloc[-1], ymin=-0.2, ymax=0.2, color="black", linewidth=5)
+        
+        # Set the labels for the x-axis and y-axis
+        plt.xticks(range(0, max(rendimientos)+1, 5))
+        plt.yticks(range(6), ["{}".format(cultivo) for cultivo in cultivos], fontsize=16, fontweight="bold")
+        
+        # Remove the spines or borders
+        ax.spines[["bottom", "top", "left", "right"]].set_visible(False)
+        
+        # Set the label for the x-axis
+        plt.xlabel("Rendimiento", fontsize=16, fontweight="bold")
+        
+        # Set the title for the plot
+        plt.title("Bullet Chart", loc="left", pad=15, fontsize=25, fontweight="bold")
         
         # Show the plot
         right.plotly_chart(fig, use_container_width=True)
