@@ -510,37 +510,18 @@ def app5():
         # Tabla dataframe entero
         st.dataframe(dfp.style.format({"Superficie (has)":"{:.0f}", "Rinde":"{:,}", "Ingreso":"${:,}", "Costos directos":"${:,}", "Gastos comercialización":"${:,}", "Margen bruto":"${:,}"}))
 
-
-
-        colors = ["#19d228", "#b4dd1e", "#f4fb16", "#f6d32b", "#fb7116"]
+        sns.set_style("whitegrid")
+        plt.figure(figsize=(10,5))
         
-        fig = plt.figure(figsize=(20, 4))
+        # Replace "Cultivo" with the actual column name in your DataFrame
+        sns.barplot(x="Rinde", y="Cultivo", data=dfp, color="#4c72b0")
         
-        ax = fig.add_subplot(1, 1, 1)
+        # Replace "Rinde objetivo" with the actual column name in your DataFrame
+        plt.axvline(x=dfp["Rinde objetivo"].values[0], color="black", lw=2)
         
-        measures = [5, 8]
-        ranges = [(0, 4), (0, 10)]
-        cultivos = ['Cultivo A', 'Cultivo B', 'Cultivo C', 'Cultivo D', 'Cultivo E']
-        
-        for i, c in enumerate(cultivos):
-            plt.barh(y=[i], width=[measures[i]], left=[ranges[i][0]], color=colors[-1])
-            plt.barh(y=[i], width=[ranges[i][1] - ranges[i][0]], left=[ranges[i][0]], color=colors)
-            
-        plt.vlines(x=measures[-1], ymin=-0.2, ymax=0.2, color="black", linewidth=5)
-        
-        plt.xticks(range(0, 11), ["{} %".format(i) for i in range(0, 101, 10)])
-        plt.yticks(range(len(cultivos)), cultivos, fontsize=16, fontweight="bold")
-        
-        ax.spines[["bottom", "top", "left", "right"]].set_visible(False)
-        
-        plt.xlabel("Percent (%)", fontsize=16, fontweight="bold")
-        plt.title("Bullet Chart", loc="left", pad=15, fontsize=25, fontweight="bold")
-        
-        colors = ['#ff0000'] if not colors else colors
-        plt.barh(y=[i], width=[measures[i]], left=[ranges[i][0]], color=colors[-1])
-
-        # Show the plot
-        right.plotly_chart(fig, use_container_width=True)
+        plt.xlabel("Rinde (ton/ha)", fontsize=12)
+        plt.ylabel("Cultivo", fontsize=12)
+        plt.title("Bullet Chart", fontsize=16, fontweight="bold", pad=15)
 
 
     if dfp is not None and df1 is None:
