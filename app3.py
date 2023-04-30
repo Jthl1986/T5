@@ -535,6 +535,9 @@ def app5():
         
         plt.xlabel("Percent (%)", fontsize=16, fontweight="bold")
         plt.title("Bullet Chart", loc="left", pad=15, fontsize=25, fontweight="bold")
+        
+        colors = ['#ff0000'] if not colors else colors
+        plt.barh(y=[i], width=[measures[i]], left=[ranges[i][0]], color=colors[-1])
 
         # Show the plot
         right.plotly_chart(fig, use_container_width=True)
