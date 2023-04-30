@@ -512,41 +512,30 @@ def app5():
 
 
 
-        # Create a list of colors
         colors = ["#19d228", "#b4dd1e", "#f4fb16", "#f6d32b", "#fb7116"]
         
-        # Extract the data from the DataFrame
-        cultivos = dfp["Cultivo"]
-        rendimientos = dfp["Rinde"]
+        fig = plt.figure(figsize=(20, 4))
         
-        # Define the figure size
-        fig = plt.figure(figsize=(20,4))
+        ax = fig.add_subplot(1, 1, 1)
         
-        # Add a subplot
-        ax = fig.add_subplot(1,1,1)
+        measures = [5, 8]
+        ranges = [(0, 4), (0, 10)]
+        cultivos = ['Cultivo A', 'Cultivo B', 'Cultivo C', 'Cultivo D', 'Cultivo E']
         
-        # Create the horizontal bar chart
-        plt.barh(y=[0,1,2,3,4], width=rendimientos, color=colors)
+        for i, c in enumerate(cultivos):
+            plt.barh(y=[i], width=[measures[i]], left=[ranges[i][0]], color=colors[-1])
+            plt.barh(y=[i], width=[ranges[i][1] - ranges[i][0]], left=[ranges[i][0]], color=colors)
+            
+        plt.vlines(x=measures[-1], ymin=-0.2, ymax=0.2, color="black", linewidth=5)
         
-        # Add the black line representing the target or goal
-        plt.barh(y=[5], width=[dfp["Rinde"].mean()], color="black", height=0.4)
+        plt.xticks(range(0, 11), ["{} %".format(i) for i in range(0, 101, 10)])
+        plt.yticks(range(len(cultivos)), cultivos, fontsize=16, fontweight="bold")
         
-        # Add the vertical line representing the current performance
-        plt.vlines(x=dfp["Rinde"].iloc[-1], ymin=-0.2, ymax=0.2, color="black", linewidth=5)
-        
-        # Set the labels for the x-axis and y-axis
-        plt.xticks(range(0, max(rendimientos)+1, 5))
-        plt.yticks(range(6), ["{}".format(cultivo) for cultivo in cultivos], fontsize=16, fontweight="bold")
-        
-        # Remove the spines or borders
         ax.spines[["bottom", "top", "left", "right"]].set_visible(False)
         
-        # Set the label for the x-axis
-        plt.xlabel("Rendimiento", fontsize=16, fontweight="bold")
-        
-        # Set the title for the plot
+        plt.xlabel("Percent (%)", fontsize=16, fontweight="bold")
         plt.title("Bullet Chart", loc="left", pad=15, fontsize=25, fontweight="bold")
-        
+
         # Show the plot
         right.plotly_chart(fig, use_container_width=True)
 
