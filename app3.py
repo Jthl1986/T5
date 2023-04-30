@@ -524,7 +524,7 @@ def app5():
         plt.ylabel("Cultivo", fontsize=12)
         plt.title("Bullet Chart", fontsize=16, fontweight="bold", pad=15)
         st.set_option('deprecation.showPyplotGlobalUse', False)
-        st.pyplot()
+        right.pyplot()
         
 
     if dfp is not None and df1 is None:
