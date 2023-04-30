@@ -525,6 +525,7 @@ def app5():
         plt.title("Bullet Chart", fontsize=16, fontweight="bold", pad=15)
         
         st.pyplot()
+        st.set_option('deprecation.showPyplotGlobalUse', False)
 
     if dfp is not None and df1 is None:
         st.write ("Sin planteo productivo o falta cargar gastos de estructura")
