@@ -521,7 +521,7 @@ def app5():
             df_cultivo = dfp[dfp['Cultivo'] == cultivo]
             d['title'] = cultivo
             d['subtitle'] = 'Rinde'
-            d['ranges'] = [df_cultivo['Rinde'].min(), df_cultivo['Rinde'].max(), df_cultivo['Rinde'].mean()]
+            d['ranges'] = [[df_cultivo['Rinde'].min(), df_cultivo['Rinde'].max(), df_cultivo['Rinde'].mean()]]
             d['measures'] = [df_cultivo['Rinde'].iloc[-1]]
             d['markers'] = [df_cultivo['Rinde'].iloc[-1]]
             d['marker_color'] = px.colors.qualitative.Alphabet[i]
