@@ -524,8 +524,8 @@ def app5():
             d['ranges'] = [df_cultivo['Rinde'].min(), df_cultivo['Rinde'].max(), df_cultivo['Rinde'].mean()]
             d['measures'] = [df_cultivo['Rinde'].iloc[-1]]
             d['markers'] = [df_cultivo['Rinde'].iloc[-1]]
-            d['marker_color'] = px.colors.qualitative.Alphabet[i]
-            d['range_color'] = px.colors.qualitative.Alphabet[i]
+            marker_colors = [px.colors.qualitative.Alphabet[i]] * 2
+            range_colors = [px.colors.qualitative.Alphabet[i]] * 2
             data.append(d)
         
         # Crear el gráfico de bullet
