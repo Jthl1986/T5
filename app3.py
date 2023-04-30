@@ -510,18 +510,38 @@ def app5():
         # Tabla dataframe entero
         st.dataframe(dfp.style.format({"Superficie (has)":"{:.0f}", "Rinde":"{:,}", "Ingreso":"${:,}", "Costos directos":"${:,}", "Gastos comercialización":"${:,}", "Margen bruto":"${:,}"}))
 
-        data = pd.read_json('https://cdn.rawgit.com/plotly/datasets/master/BulletData.json')
+        # Obtener la lista de cultivos
+        cultivos = dfp['Cultivo'].unique()
         
-        measure_colors=['rgb(63,102,153)', 'rgb(120,194,195)']
-        range_colors=['rgb(245,225,218)', 'rgb(241,241,241)']
+        # Crear una lista de diccionarios con los datos de cada cultivo
+        data = []
+        for cultivo in cultivos:
+            d = {}
+            df_cultivo = dfp[dfp['Cultivo'] == cultivo]
+            d['title'] = cultivo
+            d['subtitle'] = 'Rinde'
+            d['ranges'] = [df_cultivo['Rinde'].min(), df_cultivo['Rinde'].max(), df_cultivo['Rinde'].mean()]
+            d['measures'] = [df_cultivo['Rinde'].iloc[-1]]
+            d['markers'] = [df_cultivo['Rinde'].iloc[-1]]
+            data.append(d)
         
+        measure_colors = ['rgb(63,102,153)', 'rgb(120,194,195)']
+        range_colors = ['rgb(245,225,218)', 'rgb(241,241,241)']
         
+        # Crear el gráfico de bullet
         fig = ff.create_bullet(
             data, orientation='h', markers='markers', measures='measures',
-            ranges='ranges', subtitles='subtitle', titles='title',
-            range_colors=range_colors,
-            measure_colors=measure_colors
+            ranges='ranges', range_colors=range_colors, measure_colors=measure_colors,
         )
+        
+        # Eliminar títulos y subtítulos
+        fig.update_layout(
+            margin=dict(l=150),
+            title=None,
+            showlegend=False,
+        )
+        
+        # Mostrar el gráfico en Streamlit
         right.plotly_chart(fig, use_container_width=True)
 
 
