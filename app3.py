@@ -510,16 +510,22 @@ def app5():
         # Tabla dataframe entero
         st.dataframe(dfp.style.format({"Superficie (has)":"{:.0f}", "Rinde":"{:,}", "Ingreso":"${:,}", "Costos directos":"${:,}", "Gastos comercialización":"${:,}", "Margen bruto":"${:,}"}))
 
-        # Create example dataframe
-        data = {
-            'Cultivo': ['Maíz', 'Soja', 'Trigo'],
-            'Rinde': [8000, 3000, 7000],
-        }
-        df = pd.DataFrame(data)
-
+        data = (
+          {"label": "Revenue", "sublabel": "US$, in thousands",
+           "range": [150, 225, 300], "performance": [220,270], "point": [250]},
+          {"label": "Profit", "sublabel": "%", "range": [20, 25, 30],
+           "performance": [21, 23], "point": [26]},
+          {"label": "Order Size", "sublabel":"US$, average","range": [350, 500, 600],
+           "performance": [100,320],"point": [550]},
+          {"label": "New Customers", "sublabel": "count", "range": [1400, 2000, 2500],
+           "performance": [1000, 1650],"point": [2100]},
+          {"label": "Satisfaction", "sublabel": "out of 5","range": [3.5, 4.25, 5],
+           "performance": [3.2, 4.7], "point": [4.4]}
+        )
+        
         fig = ff.create_bullet(
-            df, markers='markers', measures='measures',
-            ranges='ranges', subtitles='subtitle',
+            data, titles='label', subtitles='sublabel', markers='point',
+            measures='performance', ranges='range', orientation='v',
         )
         right.plotly_chart(fig, use_container_width=True)
 
