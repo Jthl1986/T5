@@ -511,11 +511,13 @@ def app5():
         st.dataframe(dfp.style.format({"Superficie (has)":"{:.0f}", "Rinde":"{:,}", "Ingreso":"${:,}", "Costos directos":"${:,}", "Gastos comercialización":"${:,}", "Margen bruto":"${:,}"}))
 
 
+        
         # Obtener la lista de cultivos
         cultivos = dfp['Cultivo'].unique()
         
         # Crear una lista de diccionarios con los datos de cada cultivo
         data = []
+        color_scale = px.colors.qualitative.Alphabet # lista de colores
         for i, cultivo in enumerate(cultivos):
             d = {}
             df_cultivo = dfp[dfp['Cultivo'] == cultivo]
@@ -524,18 +526,15 @@ def app5():
             d['ranges'] = [df_cultivo['Rinde'].min(), df_cultivo['Rinde'].max(), df_cultivo['Rinde'].mean()]
             d['measures'] = [df_cultivo['Rinde'].iloc[-1]]
             d['markers'] = [df_cultivo['Rinde'].iloc[-1]]
-            measure_colors = ['rgb(63,102,153)', 'rgb(120,194,195)']
-            range_colors = ['rgb(245,225,218)', 'rgb(241,241,241)']
+            d['marker_color'] = color_scale[i] # asignar color diferente a cada cultivo
+            d['range_color'] = color_scale[i] # asignar color diferente a cada cultivo
             data.append(d)
         
-        if len(measure_colors) != 2 or len(range_colors) != 2:
-            raise ValueError("Both 'range_colors' and 'measure_colors' must be lists of two valid colors.")
-
         # Crear el gráfico de bullet
         fig = ff.create_bullet(
             data, orientation='h', markers='markers', measures='measures',
-            ranges='ranges', range_colors=range_colors, measure_colors=measure_colors,
-)
+            ranges='ranges', range_color='range_color', marker_colors='marker_color'
+        )
         
         # Eliminar títulos y subtítulos
         fig.update_layout(
@@ -546,6 +545,7 @@ def app5():
         
         # Mostrar el gráfico en Streamlit
         right.plotly_chart(fig, use_container_width=True)
+
 
     if dfp is not None and df1 is None:
         st.write ("Sin planteo productivo o falta cargar gastos de estructura")
