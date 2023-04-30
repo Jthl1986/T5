@@ -510,6 +510,12 @@ def app5():
         # Tabla dataframe entero
         st.dataframe(dfp.style.format({"Superficie (has)":"{:.0f}", "Rinde":"{:,}", "Ingreso":"${:,}", "Costos directos":"${:,}", "Gastos comercialización":"${:,}", "Margen bruto":"${:,}"}))
 
+        # Create example dataframe
+        data = {
+            'Cultivo': ['Maíz', 'Soja', 'Trigo'],
+            'Rinde': [8000, 3000, 7000],
+        }
+        df = pd.DataFrame(data)
 
         # Crear un bullet chart para el rinde por cultivo
         fig = go.Figure()
