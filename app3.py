@@ -524,15 +524,18 @@ def app5():
             d['ranges'] = [df_cultivo['Rinde'].min(), df_cultivo['Rinde'].max(), df_cultivo['Rinde'].mean()]
             d['measures'] = [df_cultivo['Rinde'].iloc[-1]]
             d['markers'] = [df_cultivo['Rinde'].iloc[-1]]
-            marker_colors = [px.colors.qualitative.Alphabet[i]] * 2
-            range_colors = [px.colors.qualitative.Alphabet[i]] * 2
+            measure_colors = ['rgb(63,102,153)', 'rgb(120,194,195)']
+            range_colors = ['rgb(245,225,218)', 'rgb(241,241,241)']
             data.append(d)
         
+        if len(measure_colors) != 2 or len(range_colors) != 2:
+            raise ValueError("Both 'range_colors' and 'measure_colors' must be lists of two valid colors.")
+
         # Crear el gráfico de bullet
         fig = ff.create_bullet(
             data, orientation='h', markers='markers', measures='measures',
-            ranges='ranges', range_colors='range_color', marker_colors='marker_color'
-        )
+            ranges='ranges', range_colors=range_colors, measure_colors=measure_colors,
+)
         
         # Eliminar títulos y subtítulos
         fig.update_layout(
