@@ -511,21 +511,12 @@ def app5():
         st.dataframe(dfp.style.format({"Superficie (has)":"{:.0f}", "Rinde":"{:,}", "Ingreso":"${:,}", "Costos directos":"${:,}", "Gastos comercialización":"${:,}", "Margen bruto":"${:,}"}))
 
 
-        # Cargar el archivo CSV
-        url = 'https://raw.githubusercontent.com/mwaskom/seaborn-data/master/anscombe.csv'
-        df = pd.read_csv(url)
-        
-        # Agregar una columna con el cultivo correspondiente a cada fila
-        dfp = df.copy()
-        dfp['Cultivo'] = ['Cultivo A', 'Cultivo B', 'Cultivo C', 'Cultivo D', 'Cultivo E',
-                          'Cultivo F', 'Cultivo G', 'Cultivo H', 'Cultivo I', 'Cultivo J']
-        
         # Obtener la lista de cultivos
         cultivos = dfp['Cultivo'].unique()
         
         # Crear una lista de diccionarios con los datos de cada cultivo
         data = []
-        for cultivo in cultivos:
+        for i, cultivo in enumerate(cultivos):
             d = {}
             df_cultivo = dfp[dfp['Cultivo'] == cultivo]
             d['title'] = cultivo
@@ -533,20 +524,14 @@ def app5():
             d['ranges'] = [df_cultivo['Rinde'].min(), df_cultivo['Rinde'].max(), df_cultivo['Rinde'].mean()]
             d['measures'] = [df_cultivo['Rinde'].iloc[-1]]
             d['markers'] = [df_cultivo['Rinde'].iloc[-1]]
+            d['marker_color'] = px.colors.qualitative.Alphabet[i]
+            d['range_color'] = px.colors.qualitative.Alphabet[i]
             data.append(d)
-        
-        # Definir la paleta de colores
-        n_cultivos = len(cultivos)
-        palette = sns.color_palette("bright", n_cultivos)
-        
-        # Definir los colores de los marcadores y rangos
-        measure_colors = palette
-        range_colors = palette[::-1]
         
         # Crear el gráfico de bullet
         fig = ff.create_bullet(
             data, orientation='h', markers='markers', measures='measures',
-            ranges='ranges', range_colors=range_colors, measure_colors=measure_colors,
+            ranges='ranges', range_color='range_color', marker_colors='marker_color'
         )
         
         # Eliminar títulos y subtítulos
