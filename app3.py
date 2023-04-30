@@ -523,9 +523,9 @@ def app5():
         plt.xlabel("Rinde (ton/ha)", fontsize=12)
         plt.ylabel("Cultivo", fontsize=12)
         plt.title("Bullet Chart", fontsize=16, fontweight="bold", pad=15)
-        
-        st.pyplot()
         st.set_option('deprecation.showPyplotGlobalUse', False)
+        st.pyplot()
+        
 
     if dfp is not None and df1 is None:
         st.write ("Sin planteo productivo o falta cargar gastos de estructura")
