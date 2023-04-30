@@ -517,7 +517,7 @@ def app5():
         sns.barplot(x="Rinde", y="Cultivo", data=dfp, color="#4c72b0")
         
         # Replace "Rinde objetivo" with the actual column name in your DataFrame
-        plt.axvline(x=dfp["Rinde objetivo"].values[0], color="black", lw=2)
+        plt.axvline(x=dfp["Rinde"].values[0], color="black", lw=2)
         
         plt.xlabel("Rinde (ton/ha)", fontsize=12)
         plt.ylabel("Cultivo", fontsize=12)
