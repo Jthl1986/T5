@@ -517,26 +517,10 @@ def app5():
         }
         df = pd.DataFrame(data)
 
-        # Crear un bullet chart para el rinde por cultivo
-        fig = go.Figure()
-        for i in range(len(df)):
-            fig.add_trace(go.Indicator(
-                mode = "number+gauge+delta",
-                value = df['Rinde'][i],
-                delta = {'reference': 6000},
-                gauge = {'axis': {'range': [None, 10000]},
-                         'bar': {'color': 'gray'},
-                         'steps': [{'range': [0, 4000], 'color': 'red'},
-                                   {'range': [4000, 6000], 'color': 'orange'},
-                                   {'range': [6000, 8000], 'color': 'yellow'},
-                                   {'range': [8000, 10000], 'color': 'green'}],
-                         'threshold' : {'line': {'color': "black", 'width': 4}, 'value': 9000}},
-                domain = {'x': [0, 1], 'y': [i/len(df), (i+1)/len(df)]},
-                title = {'text': df['Cultivo'][i]},
-                )
-            )
-       
-        # Mostrar el bullet chart en la aplicación de streamlit
+        fig = ff.create_bullet(
+            df, markers='markers', measures='measures',
+            ranges='ranges', subtitles='subtitle', titles='title',
+        )
         right.plotly_chart(fig, use_container_width=True)
 
 
