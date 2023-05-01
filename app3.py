@@ -510,12 +510,21 @@ def app5():
         # Tabla dataframe entero
         st.dataframe(dfp.style.format({"Superficie (has)":"{:.0f}", "Rinde":"{:,}", "Ingreso":"${:,}", "Costos directos":"${:,}", "Gastos comercialización":"${:,}", "Margen bruto":"${:,}"}))
 
-        #rinde       
+        # Define the ranges and measures for each crop
+        ranges = [[0, 20], [10, 30], [20, 40], [30, 50], [40, 60]]
+        measures = [dfp["Rinde"].values[0], dfp["Rinde"].values[1], dfp["Rinde"].values[2], dfp["Rinde"].values[3], dfp["Rinde"].values[4]]
+        
+        # Create the bullet chart
         sns.set_style("whitegrid")
         plt.figure(figsize=(10,5))
         
         # Replace "Cultivo" with the actual column name in your DataFrame
         sns.barplot(x="Rinde", y="Cultivo", data=dfp, color="#4c72b0")
+        
+        # Iterate over the crops to add the ranges and measures
+        for i in range(len(ranges)):
+            plt.hlines(y=i, xmin=ranges[i][0], xmax=ranges[i][1], linewidth=12, color=sns.color_palette()[i])
+            plt.plot([measures[i]], [i], marker='o', markersize=12, color="white")
         
         # Replace "Rinde objetivo" with the actual column name in your DataFrame
         plt.axvline(x=dfp["Rinde"].values[0], color="black", lw=2)
