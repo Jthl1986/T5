@@ -595,15 +595,13 @@ def app5():
                 fig.suptitle(title, fontsize=14)
             fig.subplots_adjust(hspace=0)
     
-    data_to_plot2 = [("John Smith", 105, 120),
-                 ("Jane Jones", 99, 110),
-                 ("Fred Flintstone", 109, 125),
-                 ("Barney Rubble", 135, 123),
-                 ("Mr T", 45, 105)]
-    
-    bulletgraph(data_to_plot2, limits=[20, 60, 100, 160], labels=["Poor", "OK", "Good", "Excellent"], size=(8,5), 
-                axis_label="Performance Measure", label_color="black", bar_color="#252525", target_color='#f7f7f7',
-                title="Sales Rep Performance")
+        # Obtener una lista de tuplas de cultivo y rinde
+        data_to_plot = [(cultivo, rinde, objetivo) for cultivo, rinde, objetivo in zip(dfp["Cultivo"], dfp["Rinde"], dfp["Rinde objetivo"])]
+        
+        # Crear el bullet chart
+        bulletgraph(data_to_plot, limits=[0, 10, 20, 30], labels=["Bajo", "Medio", "Alto", "Objetivo"], size=(8,5), 
+                    axis_label="Rinde (ton/ha)", label_color="black", bar_color="#252525", target_color='#f7f7f7',
+                    title="Rindes por Cultivo")
     st.pyplot()
         
 
