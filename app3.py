@@ -510,38 +510,19 @@ def app5():
         # Tabla dataframe entero
         st.dataframe(dfp.style.format({"Superficie (has)":"{:.0f}", "Rinde":"{:,}", "Ingreso":"${:,}", "Costos directos":"${:,}", "Gastos comercialización":"${:,}", "Margen bruto":"${:,}"}))
 
-
-        # Define the number of bins for the histogram
-        num_bins = 10
+        limits = [80, 100, 150]
+        data_to_plot = ("Example 1", 105, 120)
+        palette = sns.color_palette("Blues_r", len(limits))
         
-        # Set the style for the plots
-        sns.set_style("whitegrid")
+        fig, ax = plt.subplots()
+        ax.set_aspect('equal')
+        ax.set_yticks([1])
+        ax.set_yticklabels([data_to_plot[0]])
         
-        # Create the figure
-        plt.figure(figsize=(10,5))
-        
-        # Iterate over the crops to create a histogram for each one
-        for i, crop in enumerate(dfp["Cultivo"].unique()):
-            # Select the data for the current crop
-            data = dfp.loc[dfp["Cultivo"] == crop, "Rinde"]
-            
-            # Create the histogram and add it as a layer to the plot
-            sns.histplot(data=data, bins=num_bins, color=sns.color_palette()[i], alpha=0.6, linewidth=0)
-            
-            # Add the bar for the current crop
-            sns.barplot(x="Rinde", y="Cultivo", data=dfp.loc[dfp["Cultivo"] == crop], color=sns.color_palette()[i])
-            
-        # Replace "Rinde objetivo" with the actual column name in your DataFrame
-        plt.axvline(x=dfp["Rinde"].values[0], color="black", lw=2)
-        
-        plt.xlabel("Rinde (ton/ha)", fontsize=12)
-        plt.ylabel("Cultivo", fontsize=12)
-        plt.title("Bullet Chart", fontsize=16, fontweight="bold", pad=15)
-        
-        # Show the plot
-        st.set_option('deprecation.showPyplotGlobalUse', False)
-        right.pyplot()
-
+        prev_limit = 0
+        for idx, lim in enumerate(limits):
+            ax.barh([1], lim-prev_limit, left=prev_limit, height=15, color=palette[idx])
+            prev_limit = lim
         
 
     if dfp is not None and df1 is None:
