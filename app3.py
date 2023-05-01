@@ -510,30 +510,38 @@ def app5():
         # Tabla dataframe entero
         st.dataframe(dfp.style.format({"Superficie (has)":"{:.0f}", "Rinde":"{:,}", "Ingreso":"${:,}", "Costos directos":"${:,}", "Gastos comercialización":"${:,}", "Margen bruto":"${:,}"}))
 
-        # Define the ranges and measures for each crop
-        ranges = [[0, 20], [10, 30], [20, 40], [30, 50], [40, 60]]
-        measures = [dfp["Rinde"].values[0], dfp["Rinde"].values[1], dfp["Rinde"].values[2], dfp["Rinde"].values[3], dfp["Rinde"].values[4]]
+
+        # Define the number of bins for the histogram
+        num_bins = 10
         
-        # Create the bullet chart
+        # Set the style for the plots
         sns.set_style("whitegrid")
+        
+        # Create the figure
         plt.figure(figsize=(10,5))
         
-        # Replace "Cultivo" with the actual column name in your DataFrame
-        sns.barplot(x="Rinde", y="Cultivo", data=dfp, color="#4c72b0")
-        
-        # Iterate over the crops to add the ranges and measures
-        for i in range(len(ranges)):
-            plt.hlines(y=i, xmin=ranges[i][0], xmax=ranges[i][1], linewidth=12, color=sns.color_palette()[i])
-            plt.plot([measures[i]], [i], marker='o', markersize=12, color="white")
-        
+        # Iterate over the crops to create a histogram for each one
+        for i, crop in enumerate(dfp["Cultivo"].unique()):
+            # Select the data for the current crop
+            data = dfp.loc[dfp["Cultivo"] == crop, "Rinde"]
+            
+            # Create the histogram and add it as a layer to the plot
+            sns.histplot(data=data, bins=num_bins, color=sns.color_palette()[i], alpha=0.6, linewidth=0)
+            
+            # Add the bar for the current crop
+            sns.barplot(x="Rinde", y="Cultivo", data=dfp.loc[dfp["Cultivo"] == crop], color=sns.color_palette()[i])
+            
         # Replace "Rinde objetivo" with the actual column name in your DataFrame
         plt.axvline(x=dfp["Rinde"].values[0], color="black", lw=2)
         
         plt.xlabel("Rinde (ton/ha)", fontsize=12)
         plt.ylabel("Cultivo", fontsize=12)
         plt.title("Bullet Chart", fontsize=16, fontweight="bold", pad=15)
+        
+        # Show the plot
         st.set_option('deprecation.showPyplotGlobalUse', False)
         right.pyplot()
+
         
 
     if dfp is not None and df1 is None:
