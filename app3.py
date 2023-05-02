@@ -601,7 +601,7 @@ def app5():
         data_to_plot = [(cultivo, rinde, objetivo) for cultivo, rinde, objetivo in zip(dfp["Cultivo"], dfp["Rinde"], dfp["objetivo"])]
         
         # Crear el bullet chart
-        bulletgraph(data_to_plot, limits=[0, 1, 2, 3], labels=["Bajo", "Medio", "Alto", "Objetivo"], size=(8,5), 
+        bulletgraph(data_to_plot, limits=[0, 1, 2, 3, 4, 5, 6], labels=["Bajo", "Medio", "Alto", "Objetivo"], size=(8,5), 
                     axis_label="Rinde (ton/ha)", label_color="black", bar_color="#252525", target_color='#f7f7f7',
                     title="Rindes por Cultivo")
     st.pyplot()
