@@ -517,7 +517,6 @@ def app5():
             
             # Determine the max value for adjusting the bar height
             # Dividing by 10 seems to work pretty well
-            show_title_first_graph = True if show_title else False
             h = limits[-1] / 10
         
             # Use the green palette as a sensible default
@@ -529,6 +528,7 @@ def app5():
                 fig, ax = plt.subplots(figsize=size, sharex=True)
             else:
                 fig, axarr = plt.subplots(len(data), figsize=size, sharex=True)
+                show_title_first_graph = True if show_title else False
         
             # Add each bullet graph bar to a subplot
             for idx, item in enumerate(data):
