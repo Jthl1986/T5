@@ -603,8 +603,8 @@ def app5():
         # Crear el bullet chart
         bulletgraph(data_to_plot, limits=[0, 1, 2, 3, 4, 5, 6], labels=["Bajo", "Medio", "Alto", "Objetivo"], size=(8,5), 
                     axis_label="Rinde (ton/ha)", label_color="black", bar_color="#252525", target_color='#f7f7f7',
-                    title="Rindes por Cultivo")
-    st.pyplot()
+                    )
+    right.pyplot()
         
 
     if dfp is not None and df1 is None:
