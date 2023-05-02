@@ -578,7 +578,7 @@ def app5():
             if axis_label:
                 ax.set_xlabel(axis_label)
             if title:
-                fig.suptitle(title, fontsize=20)
+                plt.suptitle(title, fontsize=20)
             fig.subplots_adjust(hspace=0)
         
         # Definir los límites para cada cultivo
