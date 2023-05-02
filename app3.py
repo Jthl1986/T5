@@ -510,7 +510,7 @@ def app5():
         # Tabla dataframe entero
         st.dataframe(dfp.style.format({"Superficie (has)":"{:.0f}", "Rinde":"{:,}", "Ingreso":"${:,}", "Costos directos":"${:,}", "Gastos comercialización":"${:,}", "Margen bruto":"${:,}"}))
 
-        def bulletgraph(data=None, limits=None, labels=None, axis_label=None, title=None,
+        def bulletgraph(data=None, limits=None, labels=None, axis_label=None, title="Rindes por cultivo",
                         size=(5, 3), palette=None, formatter=None, target_color="gray",
                         bar_color="red", label_color="gray"):
             
@@ -594,9 +594,7 @@ def app5():
         
         # Aumentar el tamaño de la fuente de los nombres de los cultivos
         plt.rc('xtick', labelsize=15)
-        plt.ylabel("Cultivo", fontsize=25)
         # Crear el bullet chart para cada cultivo
-        plt.suptitle("Rindes por cultivo", fontsize=14, fontname="sans-serif")
         colors = ['#fc0505', '#f7f7f7', '#2ca02c', '#ff7f0e']
         for cultivo in cultivo_limits.keys():
             cultivo_data = [(c, r, l, o) for c, r, l, o in data_to_plot if c == cultivo]
