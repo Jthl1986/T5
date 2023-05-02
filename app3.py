@@ -553,7 +553,7 @@ def app5():
                 rects = ax.patches
                 # The last item in the list is the value we're measuring
                 # Draw the value we're measuring
-                ax.barh([1], item[1], height=(h / 3), color=bar_color)
+                ax.barh([1], item[1], height=(h / 6), color=bar_color)
         
                 # Need the ymin and max in order to make sure the target marker
                 # fits
