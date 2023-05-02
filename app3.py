@@ -599,8 +599,8 @@ def app5():
             cultivo_data = [(c, r, l, o) for c, r, l, o in data_to_plot if c == cultivo]
             if cultivo_data:
                 bulletgraph(cultivo_data, limits=cultivo_limits[cultivo], labels=["Bajo", "Medio", "Alto", "Objetivo"], size=(8,5),
-                            label_color="black", bar_color="#252525", target_color='#f7f7f7')
-                st.pyplot()
+                            label_color="black", bar_color="#fc0505", target_color='#f7f7f7')
+                right.pyplot()
         
 
     if dfp is not None and df1 is None:
