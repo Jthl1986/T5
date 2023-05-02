@@ -591,7 +591,7 @@ def app5():
     
         # Obtener una lista de tuplas de cultivo y rinde
         data_to_plot = [(cultivo, rinde, cultivo_limits[cultivo], 4) for cultivo, rinde in zip(dfp["Cultivo"], dfp["Rinde"])]
-        plt.suptitle("Rindes por cultivo", fontsize=14, fontname="sans-serif")
+        fig.suptitle("Rindes por cultivo", fontsize=14, fontname="sans-serif")
         
         # Crear el bullet chart para cada cultivo
         for cultivo in cultivo_limits.keys():
