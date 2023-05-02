@@ -512,7 +512,7 @@ def app5():
 
         def bulletgraph(data=None, limits=None, labels=None, axis_label=None, title="Rindes por cultivo",
                         size=(5, 3), palette=None, formatter=None, target_color="gray",
-                        bar_color="red", label_color="gray"):
+                        bar_color="red", label_color="gray", show_title=True):
             
             # Determine the max value for adjusting the bar height
             # Dividing by 10 seems to work pretty well
@@ -577,9 +577,11 @@ def app5():
                 ax.xaxis.set_major_formatter(formatter)
             if axis_label:
                 ax.set_xlabel(axis_label)
-            if title:
-                fig.suptitle(title, fontsize=20)
-            fig.subplots_adjust(hspace=0)
+            if show_title:
+                if title:
+                    fig.suptitle(title, fontsize=20)
+                    fig.subplots_adjust(hspace=0)
+
         
         # Definir los límites para cada cultivo
         cultivo_limits = {
