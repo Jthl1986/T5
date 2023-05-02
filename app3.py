@@ -513,22 +513,6 @@ def app5():
         def bulletgraph(data=None, limits=None, labels=None, axis_label=None, title=None,
                         size=(5, 3), palette=None, formatter=None, target_color="gray",
                         bar_color="red", label_color="gray"):
-            """ Build out a bullet graph image
-                Args:
-                    data = List of labels, measures and targets
-                    limits = list of range valules
-                    labels = list of descriptions of the limit ranges
-                    axis_label = string describing x axis
-                    title = string title of plot
-                    size = tuple for plot size
-                    palette = a seaborn palette
-                    formatter = matplotlib formatter object for x axis
-                    target_color = color string for the target line
-                    bar_color = color string for the small bar
-                    label_color = color string for the limit label text
-                Returns:
-                    a matplotlib figure
-            """
             
             # Determine the max value for adjusting the bar height
             # Dividing by 10 seems to work pretty well
@@ -587,7 +571,8 @@ def app5():
                         label,
                         ha='center',
                         va='bottom',
-                        color=label_color)
+                        color=label_color,
+                        fontsize=10)
             if formatter:
                 ax.xaxis.set_major_formatter(formatter)
             if axis_label:
