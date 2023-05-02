@@ -532,7 +532,7 @@ def app5():
             
             # Determine the max value for adjusting the bar height
             # Dividing by 10 seems to work pretty well
-            h = limits[-1] / 30
+            h = limits[-1] / 10
         
             # Use the green palette as a sensible default
             if palette is None:
