@@ -529,6 +529,8 @@ def app5():
                 Returns:
                     a matplotlib figure
             """
+            
+            dfp["Rinde objetivo"] = dfp["Rinde"] * 1.1
             # Determine the max value for adjusting the bar height
             # Dividing by 10 seems to work pretty well
             h = limits[-1] / 10
@@ -596,7 +598,7 @@ def app5():
             fig.subplots_adjust(hspace=0)
     
         # Obtener una lista de tuplas de cultivo y rinde
-        data_to_plot = [(cultivo, rinde, objetivo) for cultivo, rinde, objetivo in zip(dfp["Cultivo"], dfp["Rinde"])]
+        data_to_plot = [(cultivo, rinde, objetivo) for cultivo, rinde, objetivo in zip(dfp["Cultivo"], dfp["Rinde"], dfp["Rinde objetivo"])]
         
         # Crear el bullet chart
         bulletgraph(data_to_plot, limits=[0, 10, 20, 30], labels=["Bajo", "Medio", "Alto", "Objetivo"], size=(8,5), 
