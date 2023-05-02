@@ -595,16 +595,25 @@ def app5():
             if title:
                 fig.suptitle(title, fontsize=16)
             fig.subplots_adjust(hspace=0)
+        
+        # Definir los límites para cada cultivo
+        cultivo_limits = {
+            "Maíz": [0, 1.5, 3, 4.5, 6],
+            "Trigo": [0, 1, 2, 3, 4],
+            "Soja": [0, 1, 2, 3, 4.5],
+            # Agregar límites para otros cultivos aquí
+        }
     
         # Obtener una lista de tuplas de cultivo y rinde
-        dfp["objetivo"] = 4
-        data_to_plot = [(cultivo, rinde, objetivo) for cultivo, rinde, objetivo in zip(dfp["Cultivo"], dfp["Rinde"], dfp["objetivo"])]
+        data_to_plot = [(cultivo, rinde, cultivo_limits[cultivo], 4) for cultivo, rinde in zip(dfp["Cultivo"], dfp["Rinde"])]
         
-        # Crear el bullet chart
-        bulletgraph(data_to_plot, limits=[0, 1, 2, 3, 4, 5, 6], labels=["Bajo", "Medio", "Alto", "Objetivo"], size=(8,5), 
-                    label_color="black", bar_color="#252525", target_color='#f7f7f7',
-                    )
-    right.pyplot()
+        # Crear el bullet chart para cada cultivo
+        for cultivo in cultivo_limits.keys():
+            cultivo_data = [(c, r, l, o) for c, r, l, o in data_to_plot if c == cultivo]
+            if cultivo_data:
+                bulletgraph(cultivo_data, limits=cultivo_limits[cultivo], labels=["Bajo", "Medio", "Alto", "Objetivo"], size=(8,5), 
+                            label_color="black", bar_color="#252525", target_color='#f7f7f7')
+                right.pyplot()
         
 
     if dfp is not None and df1 is None:
