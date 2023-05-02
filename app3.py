@@ -572,7 +572,7 @@ def app5():
                         ha='center',
                         va='bottom',
                         color=label_color,
-                        fontsize=10)
+                        fontsize=15)
             if formatter:
                 ax.xaxis.set_major_formatter(formatter)
             if axis_label:
