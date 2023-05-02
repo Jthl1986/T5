@@ -600,7 +600,7 @@ def app5():
         colors = ['#fc0505', '#f7f7f7', '#2ca02c', '#ff7f0e']
         for cultivo in cultivo_limits.keys():
             cultivo_data = [(c, r, l, o) for c, r, l, o in data_to_plot if c == cultivo]
-            plt.ylabel("Cultivo", fontsize=14)
+            plt.ylabel("Cultivo", fontsize=25)
             if cultivo_data:
                 bulletgraph(cultivo_data, limits=cultivo_limits[cultivo], labels=["Bajo", "Medio", "Alto", "Objetivo"], size=(8,5),
                             label_color="black", bar_color=colors[0], target_color=colors[1])
