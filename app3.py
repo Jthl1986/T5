@@ -593,7 +593,7 @@ def app5():
         data_to_plot = [(cultivo, rinde, cultivo_limits[cultivo], 4) for cultivo, rinde in zip(dfp["Cultivo"], dfp["Rinde"])]
         
         # Aumentar el tamaño de la fuente de los nombres de los cultivos
-        plt.rc('xtick', labelsize=15)
+        plt.rc('xtick', labelsize=25)
         
         # Crear el bullet chart para cada cultivo
         plt.suptitle("Rindes por cultivo", fontsize=14, fontname="sans-serif")
