@@ -580,7 +580,7 @@ def app5():
         if show_title:
             if title:
                 fig.suptitle(title, fontsize=20)
-        fig.subplots_adjust(hspace=0)
+                fig.subplots_adjust(hspace=0)
 
         
         # Definir los límites para cada cultivo
