@@ -598,15 +598,9 @@ def app5():
         for cultivo in cultivo_limits.keys():
             cultivo_data = [(c, r, l, o) for c, r, l, o in data_to_plot if c == cultivo]
             if cultivo_data:
-                bulletgraph(cultivo_data, limits=cultivo_limits[cultivo], labels=["Bajo", "Medio", "Alto", "Objetivo"], size=(8,5),
+                bulletgraph(cultivo_data, limits=cultivo_limits[cultivo], labels=[], size=(8,5),
                             label_color="black", bar_color=colors[0], target_color=colors[1])
-                plt.plot([], [], color=colors[0], label='Real')
-                plt.plot([], [], color=colors[1], label='Objetivo')
-                plt.legend(loc='lower center', ncol=2, bbox_to_anchor=(0.5, -0.25))
-                colors = colors[2:] + colors[:2]
-            else:
-                continue
-            right.pyplot()
+                right.pyplot()
         
 
     if dfp is not None and df1 is None:
