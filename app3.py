@@ -600,7 +600,7 @@ def app5():
             if cultivo_data:
                 bulletgraph(cultivo_data, limits=cultivo_limits[cultivo], labels=["Bajo", "Medio", "Alto", "Objetivo"], size=(8,5),
                             label_color="black", bar_color="#252525", target_color='#f7f7f7')
-                right.pyplot()
+                st.pyplot()
         
 
     if dfp is not None and df1 is None:
