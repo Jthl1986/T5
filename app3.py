@@ -597,12 +597,12 @@ def app5():
             fig.subplots_adjust(hspace=0)
     
         # Obtener una lista de tuplas de cultivo y rinde
-        dfp["objetivo"] = 2
+        dfp["objetivo"] = 4
         data_to_plot = [(cultivo, rinde, objetivo) for cultivo, rinde, objetivo in zip(dfp["Cultivo"], dfp["Rinde"], dfp["objetivo"])]
         
         # Crear el bullet chart
         bulletgraph(data_to_plot, limits=[0, 1, 2, 3, 4, 5, 6], labels=["Bajo", "Medio", "Alto", "Objetivo"], size=(8,5), 
-                    axis_label="Rinde (ton/ha)", label_color="black", bar_color="#252525", target_color='#f7f7f7',
+                    label_color="black", bar_color="#252525", target_color='#f7f7f7',
                     )
     right.pyplot()
         
