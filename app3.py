@@ -528,7 +528,6 @@ def app5():
                 fig, ax = plt.subplots(figsize=size, sharex=True)
             else:
                 fig, axarr = plt.subplots(len(data), figsize=size, sharex=True)
-                show_title_first_graph = True if show_title else False
         
             # Add each bullet graph bar to a subplot
             for idx, item in enumerate(data):
@@ -562,10 +561,6 @@ def app5():
                 ymin, ymax = ax.get_ylim()
                 ax.vlines(
                     item[2], ymin * .9, ymax * .9, linewidth=1.5, color=target_color)
-                
-                if idx == 0 and show_title_first_graph:  # added lines
-                    fig.suptitle(title, fontsize=20)
-                    show_title_first_graph = False
         
             # Now make some labels
             if labels is not None:
