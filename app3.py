@@ -578,7 +578,7 @@ def app5():
             if axis_label:
                 ax.set_xlabel(axis_label)
             if title:
-                plt.suptitle(title, fontsize=20)
+                fig.suptitle(title, fontsize=20)
             fig.subplots_adjust(hspace=0)
         
         # Definir los límites para cada cultivo
@@ -594,12 +594,19 @@ def app5():
         
         # Crear el bullet chart para cada cultivo
         plt.suptitle("Rindes por cultivo", fontsize=14, fontname="sans-serif")
+        colors = ['#fc0505', '#f7f7f7', '#2ca02c', '#ff7f0e']
         for cultivo in cultivo_limits.keys():
             cultivo_data = [(c, r, l, o) for c, r, l, o in data_to_plot if c == cultivo]
             if cultivo_data:
                 bulletgraph(cultivo_data, limits=cultivo_limits[cultivo], labels=["Bajo", "Medio", "Alto", "Objetivo"], size=(8,5),
-                            label_color="black", bar_color="#fc0505", target_color='#f7f7f7')
-                right.pyplot()
+                            label_color="black", bar_color=colors[0], target_color=colors[1])
+                plt.plot([], [], color=colors[0], label='Real')
+                plt.plot([], [], color=colors[1], label='Objetivo')
+                plt.legend(loc='lower center', ncol=2, bbox_to_anchor=(0.5, -0.25))
+                colors = colors[2:] + colors[:2]
+            else:
+                continue
+            right.pyplot()
         
 
     if dfp is not None and df1 is None:
