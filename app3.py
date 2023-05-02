@@ -606,12 +606,12 @@ def app5():
     
         # Obtener una lista de tuplas de cultivo y rinde
         data_to_plot = [(cultivo, rinde, cultivo_limits[cultivo], 4) for cultivo, rinde in zip(dfp["Cultivo"], dfp["Rinde"])]
-        
+        plt.suptitle("Rindes por cultivo", fontsize=14, fontname="sans-serif")
         # Crear el bullet chart para cada cultivo
         for cultivo in cultivo_limits.keys():
             cultivo_data = [(c, r, l, o) for c, r, l, o in data_to_plot if c == cultivo]
             if cultivo_data:
-                bulletgraph(cultivo_data, limits=cultivo_limits[cultivo], labels=["Bajo", "Medio", "Alto", "Objetivo"], size=(8,5), title = 'rindes por cultivo',
+                bulletgraph(cultivo_data, limits=cultivo_limits[cultivo], labels=["Bajo", "Medio", "Alto", "Objetivo"], size=(8,5),
                             label_color="black", bar_color="#252525", target_color='#f7f7f7')
                 right.pyplot()
         
