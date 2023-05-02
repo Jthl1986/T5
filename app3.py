@@ -512,7 +512,7 @@ def app5():
 
         def bulletgraph(data=None, limits=None, labels=None, axis_label=None, title=None,
                         size=(5, 3), palette=None, formatter=None, target_color="gray",
-                        bar_color="black", label_color="gray"):
+                        bar_color="red", label_color="gray"):
             """ Build out a bullet graph image
                 Args:
                     data = List of labels, measures and targets
