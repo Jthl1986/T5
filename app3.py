@@ -510,12 +510,14 @@ def app5():
         # Tabla dataframe entero
         st.dataframe(dfp.style.format({"Superficie (has)":"{:.0f}", "Rinde":"{:,}", "Ingreso":"${:,}", "Costos directos":"${:,}", "Gastos comercialización":"${:,}", "Margen bruto":"${:,}"}))
 
+        
         def bulletgraph(data=None, limits=None, labels=None, axis_label=None, title="Rindes por cultivo",
                         size=(5, 3), palette=None, formatter=None, target_color="gray",
                         bar_color="red", label_color="gray", show_title=True):
             
             # Determine the max value for adjusting the bar height
             # Dividing by 10 seems to work pretty well
+            show_title_first_graph = True if show_title else False
             h = limits[-1] / 10
         
             # Use the green palette as a sensible default
@@ -560,6 +562,10 @@ def app5():
                 ymin, ymax = ax.get_ylim()
                 ax.vlines(
                     item[2], ymin * .9, ymax * .9, linewidth=1.5, color=target_color)
+                
+                if idx == 0 and show_title_first_graph:  # added lines
+                    fig.suptitle(title, fontsize=20)
+                    show_title_first_graph = False
         
             # Now make some labels
             if labels is not None:
