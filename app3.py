@@ -496,7 +496,7 @@ def app5():
         fig = px.bar(df_grouped, x='Cultivo', y='Superficie (has)', color='Cultivo', color_discrete_sequence=colors)
         # Ajustar el margen inferior y superior del gráfico
         fig.update_layout(margin=dict(t=0, b=0))
-        left.plotly_chart(fig, use_container_width=True)
+        right.plotly_chart(fig, use_container_width=True)
         
         #GRAFICO TORTA
         # Agrupar por tipo de campo y sumar la superficie
@@ -603,7 +603,7 @@ def app5():
             if cultivo_data:
                 bulletgraph(cultivo_data, limits=cultivo_limits[cultivo], labels=["Bajo", "Medio", "Alto", "Objetivo"], size=(8,5),
                             label_color="black", bar_color=colors[0], target_color=colors[1])
-                right.pyplot()
+                left.pyplot()
         
 
     if dfp is not None and df1 is None:
