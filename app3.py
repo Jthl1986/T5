@@ -593,7 +593,7 @@ def app5():
             if axis_label:
                 ax.set_xlabel(axis_label)
             if title:
-                fig.suptitle(title, fontsize=14)
+                fig.suptitle(title, fontsize=16)
             fig.subplots_adjust(hspace=0)
     
         # Obtener una lista de tuplas de cultivo y rinde
