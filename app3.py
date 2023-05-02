@@ -530,7 +530,7 @@ def app5():
                     a matplotlib figure
             """
             
-            dfp["Rinde objetivo"] = dfp["Rinde"] * 1.1
+            df['Rinde objetivo'] = 2
             # Determine the max value for adjusting the bar height
             # Dividing by 10 seems to work pretty well
             h = limits[-1] / 10
