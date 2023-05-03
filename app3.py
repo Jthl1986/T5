@@ -597,12 +597,10 @@ def app5():
         
         # Aumentar el tamaño de la fuente de los nombres de los cultivos
         plt.rc('xtick', labelsize=15)
-        # Crear el bullet chart para cada cultivo
         
         estilo = """
             <style>
                 p {
-                    font-family: sans-serif;
                     font-size: 14px;
                     color: grey;
                 }
@@ -611,6 +609,7 @@ def app5():
         
         if data_to_plot is not None:
             texto = "rendimiento por cultivo"
+            left = st.sidebar
             left.write(f"<p style='{estilo}'>{texto}</p>", unsafe_allow_html=True)
         
         colors = ['#fc0505', '#f7f7f7', '#2ca02c', '#ff7f0e']
