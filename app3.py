@@ -594,11 +594,7 @@ def app5():
     
         # Obtener una lista de tuplas de cultivo y rinde
         data_to_plot = [(cultivo, rinde, cultivo_limits[cultivo], 4) for cultivo, rinde in zip(dfp["Cultivo"], dfp["Rinde"])]
-        titulo = "Rendimiento por cultivo"
-        # Aumentar el tamaño de la fuente de los nombres de los cultivos
-        plt.rc('xtick', labelsize=15)
-        # Crear el bullet chart para cada cultivo
-        colors = ['#fc0505', '#f7f7f7', '#2ca02c', '#ff7f0e']
+        
         # Variable booleana para controlar la creación del título
         primer_chart = True
         
@@ -609,13 +605,12 @@ def app5():
                 if primer_chart:
                     titulo = "Rendimiento por cultivo"
                     fig, ax = plt.subplots(figsize=(8,5))
-                    fig.suptitle(titulo, fontsize=20)
+                    ax.set_title(titulo, fontsize=20)
                     primer_chart = False
-                
+                    
                 bulletgraph(cultivo_data, limits=cultivo_limits[cultivo], labels=["Bajo", "Medio", "Alto", "Objetivo"], size=(8,5),
                             label_color="black", bar_color=colors[0], target_color=colors[1], show_title=False)
-                left.pyplot(fig)
-        
+                st.pyplot(fig)
 
     if dfp is not None and df1 is None:
         st.write ("Sin planteo productivo o falta cargar gastos de estructura")
