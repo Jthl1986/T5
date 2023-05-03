@@ -599,12 +599,22 @@ def app5():
         plt.rc('xtick', labelsize=15)
         # Crear el bullet chart para cada cultivo
         colors = ['#fc0505', '#f7f7f7', '#2ca02c', '#ff7f0e']
+        # Variable booleana para controlar la creación del título
+        primer_chart = True
+        
         for cultivo in cultivo_limits.keys():
             cultivo_data = [(c, r, l, o) for c, r, l, o in data_to_plot if c == cultivo]
             if cultivo_data:
+                # Crear el título solo para el primer chart
+                if primer_chart:
+                    titulo = "Rendimiento por cultivo"
+                    fig, ax = plt.subplots(figsize=(8,5))
+                    fig.suptitle(titulo, fontsize=20)
+                    primer_chart = False
+                
                 bulletgraph(cultivo_data, limits=cultivo_limits[cultivo], labels=["Bajo", "Medio", "Alto", "Objetivo"], size=(8,5),
                             label_color="black", bar_color=colors[0], target_color=colors[1], show_title=False)
-                left.pyplot()
+                left.pyplot(fig)
         
 
     if dfp is not None and df1 is None:
