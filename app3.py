@@ -598,6 +598,19 @@ def app5():
         # Aumentar el tamaño de la fuente de los nombres de los cultivos
         plt.rc('xtick', labelsize=15)
         
+        
+        if data_to_plot is not None:
+            estilo = """
+                <style>
+                    p {
+                        font-size: 14px;
+                        color: grey;
+                    }
+                </style>
+            """
+            texto = "rendimiento por cultivo"
+            left.write(f"<p style='{estilo}'>{texto}</p>", unsafe_allow_html=True)
+        
         colors = ['#fc0505', '#f7f7f7', '#2ca02c', '#ff7f0e']
         for cultivo in cultivo_limits.keys():
             cultivo_data = [(c, r, l, o) for c, r, l, o in data_to_plot if c == cultivo]
