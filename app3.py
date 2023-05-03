@@ -609,7 +609,6 @@ def app5():
         
         if data_to_plot is not None:
             texto = "rendimiento por cultivo"
-            left = st.sidebar
             left.write(f"<p style='{estilo}'>{texto}</p>", unsafe_allow_html=True)
         
         colors = ['#fc0505', '#f7f7f7', '#2ca02c', '#ff7f0e']
