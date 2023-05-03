@@ -594,7 +594,7 @@ def app5():
     
         # Obtener una lista de tuplas de cultivo y rinde
         data_to_plot = [(cultivo, rinde, cultivo_limits[cultivo], 4) for cultivo, rinde in zip(dfp["Cultivo"], dfp["Rinde"])]
-        
+        titulo = "Rendimiento por cultivo"
         # Aumentar el tamaño de la fuente de los nombres de los cultivos
         plt.rc('xtick', labelsize=15)
         # Crear el bullet chart para cada cultivo
@@ -603,7 +603,9 @@ def app5():
             cultivo_data = [(c, r, l, o) for c, r, l, o in data_to_plot if c == cultivo]
             if cultivo_data:
                 bulletgraph(cultivo_data, limits=cultivo_limits[cultivo], labels=["Bajo", "Medio", "Alto", "Objetivo"], size=(8,5),
-                            label_color="black", bar_color=colors[0], target_color=colors[1])
+                            label_color="black", bar_color=colors[0], target_color=colors[1], show_title=False)
+                fig.suptitle(titulo, fontsize=20)
+                fig.subplots_adjust(hspace=0)
                 left.pyplot()
         
 
