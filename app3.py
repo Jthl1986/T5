@@ -93,7 +93,7 @@ def app():
     vaquillona250=int(vaquillona.promedio[11][2:5])
     vaquillona290=int(vaquillona.promedio[12][2:5])
     vaquillona291=int(vaquillona.promedio[13][2:5])
-    vacas=int(vaca.promedio[19][2:8])
+    #vacas=int(vaca.promedio[19][2:8])
     def constructor():
         def valores():
             if tipo == 'Ternero             ' and peso < 160:
