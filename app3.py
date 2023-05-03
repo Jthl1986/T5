@@ -77,7 +77,7 @@ def app():
     novillito=tabla[4:7]
     ternera=tabla[7:11]
     vaquillona=tabla[11:14]
-    vaca=tabla[19:20]
+    vaca=tabla[11:12] #el predeterminado es 19:20
     fecha=(tabla[11:12].values)[0][0] #el predeterminado es 25:26
     ternero160=int(ternero.promedio[0][2:5])
     ternero180=int(ternero.promedio[1][2:5])
