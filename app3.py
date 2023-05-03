@@ -604,8 +604,6 @@ def app5():
             if cultivo_data:
                 bulletgraph(cultivo_data, limits=cultivo_limits[cultivo], labels=["Bajo", "Medio", "Alto", "Objetivo"], size=(8,5),
                             label_color="black", bar_color=colors[0], target_color=colors[1], show_title=False)
-                fig.text(0.5, 0.95, titulo, ha='center', fontsize=20)
-                fig.subplots_adjust(hspace=0)
                 left.pyplot()
         
 
