@@ -599,7 +599,8 @@ def app5():
         plt.rc('xtick', labelsize=15)
         # Crear el bullet chart para cada cultivo
         colors = ['#fc0505', '#f7f7f7', '#2ca02c', '#ff7f0e']
-        left.write("rendimiento por cultivo")
+        if data_to_plot is not None:
+             left.write("rendimiento por cultivo")
         for cultivo in cultivo_limits.keys():
             cultivo_data = [(c, r, l, o) for c, r, l, o in data_to_plot if c == cultivo]
             if cultivo_data:
