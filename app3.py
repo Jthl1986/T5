@@ -467,33 +467,30 @@ def app5():
         ]
 
         # Crear un DataFrame
-        left, right = st.beta_columns(2)               
+        left,right = st.beta_columns(2)               
         df = pd.DataFrame(data)
+        
+        # Estilo de la fila "Generacion de fondos"
+        negrita = df["Concepto"] == "Generacion de fondos"
+        estilo = [{True: "font-weight: bold", False: ""}[condicion] for condicion in negrita]
         
         # Crear una tabla con Plotly con estilo personalizado
         fig = go.Figure(data=[go.Table(
             header=dict(values=list(df.columns),
-                        fill_color='#f0f2f6',  # Cambiar el color a #f0f2f6
-                        font=dict(family='sans-serif',  # Cambiar la fuente a sans-serif
-                                  size=14),  # Cambiar el tamaño de la fuente a 14
+                        fill_color='#f0f2f6',
+                        font=dict(family='sans-serif', size=14),
                         align=['left', 'right']),
             cells=dict(values=[df.Concepto, df.Total],
                        fill_color='white',
-                       font=dict(family='sans-serif',  # Cambiar la fuente a sans-serif
-                                 size=14),
+                       font=dict(family='sans-serif', size=14),
                        align=['left', 'right'],
                        height=30,
-                       # Aplicar estilo en negrita a la fila que contiene el texto "Generacion de fondos"
-                       # y mantener el estilo predeterminado para todas las demás filas.
-                       # El valor de estilo para cada fila se especifica en una lista de diccionarios.
-                       # Cada diccionario representa el estilo de una fila.
-                       # El número de diccionarios en la lista debe ser igual al número de filas en la tabla.
-                       # Para este ejemplo, asumimos que "Generacion de fondos" está en la segunda fila.
-                       # Por lo tanto, agregamos dos diccionarios a la lista, el primero para la primera fila
-                       # y el segundo para la segunda fila (en negrita).
-                       style=[{'fontWeight': 'normal'}, {'fontWeight': 'bold'}]
-                      ))
-        ])
+                       # Aplicar estilo a las celdas de la columna Concepto
+                       # para que la fila "Generacion de fondos" sea negrita
+                       style=[{'if': {'row_index': i}, 'props': {'font-weight': estilo[i]}} 
+                              for i in range(len(estilo))])
+        )]) 
+
         
         # Ajustar el margen inferior y superior del gráfico
         fig.update_layout(height=len(df)*30+60)
