@@ -600,17 +600,8 @@ def app5():
         
         
         if data_to_plot is not None:
-            estilo = """
-                <style>
-                    p {
-                        font-size: 14px;
-                        color: #808080;
-                        font-family: sans-serif;
-                    }
-                </style>
-            """
             texto = "rendimiento por cultivo"
-            left.write(f"<p style='{estilo}'>{texto}</p>", unsafe_allow_html=True)
+            left.write(f"<span style='font-size: 14px; color: #808080; font-family: sans-serif;'>{texto}</span>", unsafe_allow_html=True)
         
         colors = ['#fc0505', '#f7f7f7', '#2ca02c', '#ff7f0e']
         for cultivo in cultivo_limits.keys():
