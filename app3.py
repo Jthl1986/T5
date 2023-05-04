@@ -598,6 +598,7 @@ def app5():
         
         # Aumentar el tamaño de la fuente de los nombres de los cultivos
         plt.rc('xtick', labelsize=20)
+        plt.rc('ytick', labelsize=15)
         
         
         if data_to_plot is not None:
