@@ -473,32 +473,27 @@ def app5():
         # Crear una tabla con Plotly con estilo personalizado
         fig = go.Figure(data=[go.Table(
             header=dict(values=list(df.columns),
-                        fill_color='#f0f2f6',
-                        font=dict(family='sans-serif', size=14),
+                        fill_color='#f0f2f6',  # Cambiar el color a #f0f2f6
+                        font=dict(family='sans-serif',  # Cambiar la fuente a sans-serif
+                                  size=14),  # Cambiar el tamaño de la fuente a 14
                         align=['left', 'right']),
             cells=dict(values=[df.Concepto, df.Total],
                        fill_color='white',
-                       font=dict(family='sans-serif', size=14),
+                       font=dict(family='sans-serif',  # Cambiar la fuente a sans-serif
+                                 size=14),
                        align=['left', 'right'],
                        height=30,
-                       # Establecer la fuente en negrita para la última fila
-                       font=dict(color='black', family='sans-serif', size=14),
-                       # Establecer el índice de la última fila
-                       # En este ejemplo, estamos suponiendo que la última fila es la fila 5
-                       # Asegúrate de ajustar esto al número correcto de filas en tu DataFrame
-                       line=dict(color='black', width=1),
-                       # Establecer el color del borde para la última fila
-                       ),
-            # Establecer el índice de la última fila
-            # En este ejemplo, estamos suponiendo que la última fila es la fila 5
-            # Asegúrate de ajustar esto al número correcto de filas en tu DataFrame
-            layout=dict(font=dict(color='black', family='sans-serif', size=14),
-                        margin=dict(l=0, r=0, t=0, b=0),
-                        height=30*(df.shape[0]+1)))
+                       # Aplicar estilo en negrita a la fila que contiene el texto "Generacion de fondos"
+                       # y mantener el estilo predeterminado para todas las demás filas.
+                       # El valor de estilo para cada fila se especifica en una lista de diccionarios.
+                       # Cada diccionario representa el estilo de una fila.
+                       # El número de diccionarios en la lista debe ser igual al número de filas en la tabla.
+                       # Para este ejemplo, asumimos que "Generacion de fondos" está en la segunda fila.
+                       # Por lo tanto, agregamos dos diccionarios a la lista, el primero para la primera fila
+                       # y el segundo para la segunda fila (en negrita).
+                       style=[{'fontWeight': 'normal'}, {'fontWeight': 'bold'}]
+                      ))
         ])
-        
-        # Establecer la fuente en negrita para la última fila
-        fig.update_traces(cells=dict(font=[dict(color='white', family='sans-serif', size=14) if i==df.shape[0] else dict(color='black', family='sans-serif', size=14) for i in range(df.shape[0]+1)]))
         
         # Ajustar el margen inferior y superior del gráfico
         fig.update_layout(height=len(df)*30+60)
