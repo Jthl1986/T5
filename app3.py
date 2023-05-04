@@ -604,7 +604,8 @@ def app5():
                 <style>
                     p {
                         font-size: 14px;
-                        color: grey;
+                        color: #808080;
+                        font-family: sans-serif;
                     }
                 </style>
             """
