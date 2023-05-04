@@ -475,7 +475,7 @@ def app5():
                         fill_color='#f0f2f6',  # Cambiar el color a #f0f2f6
                         font=dict(family='sans-serif',  # Cambiar la fuente a sans-serif
                                   size=14),  # Cambiar el tamaño de la fuente a 14
-                        align='left'),
+                        align=['left', 'right']),
             cells=dict(values=[df.Concepto, df.Total],
                        fill_color='white',
                        font=dict(family='sans-serif',  # Cambiar la fuente a sans-serif
