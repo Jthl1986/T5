@@ -467,22 +467,39 @@ def app5():
         ]
 
         # Crear un DataFrame
-        left,right = st.beta_columns(2)               
+        left, right = st.beta_columns(2)               
         df = pd.DataFrame(data)
+        
         # Crear una tabla con Plotly con estilo personalizado
         fig = go.Figure(data=[go.Table(
             header=dict(values=list(df.columns),
-                        fill_color='#f0f2f6',  # Cambiar el color a #f0f2f6
-                        font=dict(family='sans-serif',  # Cambiar la fuente a sans-serif
-                                  size=14),  # Cambiar el tamaño de la fuente a 14
+                        fill_color='#f0f2f6',
+                        font=dict(family='sans-serif', size=14),
                         align=['left', 'right']),
             cells=dict(values=[df.Concepto, df.Total],
                        fill_color='white',
-                       font=dict(family='sans-serif',  # Cambiar la fuente a sans-serif
-                                 size=14),
+                       font=dict(family='sans-serif', size=14),
                        align=['left', 'right'],
-                       height=30))
+                       height=30,
+                       # Establecer la fuente en negrita para la última fila
+                       font=dict(color='black', family='sans-serif', size=14),
+                       # Establecer el índice de la última fila
+                       # En este ejemplo, estamos suponiendo que la última fila es la fila 5
+                       # Asegúrate de ajustar esto al número correcto de filas en tu DataFrame
+                       line=dict(color='black', width=1),
+                       # Establecer el color del borde para la última fila
+                       ),
+            # Establecer el índice de la última fila
+            # En este ejemplo, estamos suponiendo que la última fila es la fila 5
+            # Asegúrate de ajustar esto al número correcto de filas en tu DataFrame
+            layout=dict(font=dict(color='black', family='sans-serif', size=14),
+                        margin=dict(l=0, r=0, t=0, b=0),
+                        height=30*(df.shape[0]+1)))
         ])
+        
+        # Establecer la fuente en negrita para la última fila
+        fig.update_traces(cells=dict(font=[dict(color='white', family='sans-serif', size=14) if i==df.shape[0] else dict(color='black', family='sans-serif', size=14) for i in range(df.shape[0]+1)]))
+        
         # Ajustar el margen inferior y superior del gráfico
         fig.update_layout(height=len(df)*30+60)
         fig.update_layout(margin=dict(t=0, b=0))        
