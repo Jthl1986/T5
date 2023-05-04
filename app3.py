@@ -608,7 +608,7 @@ def app5():
         for cultivo in cultivo_limits.keys():
             cultivo_data = [(c, r, l, o) for c, r, l, o in data_to_plot if c == cultivo]
             if cultivo_data:
-                bulletgraph(cultivo_data, limits=cultivo_limits[cultivo], labels=["Bajo", "Medio", "Alto", "Objetivo"], size=(8,5),
+                bulletgraph(cultivo_data, limits=cultivo_limits[cultivo], labels=[], size=(8,5),
                             label_color="black", bar_color=colors[0], target_color=colors[1], show_title=False)
                 left.pyplot()
         
