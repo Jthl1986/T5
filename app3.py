@@ -469,28 +469,21 @@ def app5():
         # Crear un DataFrame
         left,right = st.beta_columns(2)               
         df = pd.DataFrame(data)
-        
-        # Estilo de la fila "Generacion de fondos"
-        negrita = df["Concepto"] == "Generacion de fondos"
-        estilo = [{True: "font-weight: bold", False: ""}[condicion] for condicion in negrita]
-        
         # Crear una tabla con Plotly con estilo personalizado
         fig = go.Figure(data=[go.Table(
             header=dict(values=list(df.columns),
-                        fill_color='#f0f2f6',
-                        font=dict(family='sans-serif', size=14),
+                        fill_color='#f0f2f6',  # Cambiar el color a #f0f2f6
+                        font=dict(family='sans-serif',  # Cambiar la fuente a sans-serif
+                                  size=14),  # Cambiar el tamaño de la fuente a 14
                         align=['left', 'right']),
             cells=dict(values=[df.Concepto, df.Total],
                        fill_color='white',
-                       font=dict(family='sans-serif', size=14),
+                       font=dict(family='sans-serif',  # Cambiar la fuente a sans-serif
+                                 size=14),
+                       font_weight= 'bold',
                        align=['left', 'right'],
-                       height=30,
-                       # Aplicar estilo a las celdas de la columna Concepto
-                       # para que la fila "Generacion de fondos" sea negrita
-                       style=[{'if': {'row_index': i}, 'props': {'font-weight': estilo[i]}} 
-                              for i in range(len(estilo))])
-        )]) 
-
+                       height=30))
+        ])
         
         # Ajustar el margen inferior y superior del gráfico
         fig.update_layout(height=len(df)*30+60)
