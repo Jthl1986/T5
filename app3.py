@@ -605,12 +605,11 @@ def app5():
         
         if data_to_plot is not None:
             texto = "Rendimiento por cultivo"
-            x = '<div style="width: 10px; height: 10px; background-color: #D73027;"></div>'
-            texto1 = "Malo " + x + " Regular " + x + " Adecuado " + x + " Bueno " + x
+            x = f'<div style="width: 10px; height: 10px; background-color: #D73027; display: inline-flex;"></div>'
+            texto1 = f"{x} Malo "
             left.write(f"<span style='font-size: 12px; color: #808080; font-family: Source Sans Pro, sans-serif;'>{texto}</span>", unsafe_allow_html=True)
             left.write(f"<span style='font-size: 12px; color: #000000; font-family: Source Sans Pro, sans-serif;'>{texto1}</span>", unsafe_allow_html=True)
-            
-            
+                        
         colors = ['#000000', '#f7f7f7', '#2ca02c', '#ff7f0e']
         for cultivo in cultivo_limits.keys():
             cultivo_data = [(c, r, l, o) for c, r, l, o in data_to_plot if c == cultivo]
