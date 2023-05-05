@@ -605,8 +605,8 @@ def app5():
         
         if data_to_plot is not None:
             texto = "Rendimiento por cultivo"
-            x = st.write('<div style="width: 10px; height: 10px; background-color: #D73027;"></div>', unsafe_allow_html=True)
-            texto1 = "Malo" + x
+            x = '<div style="width: 10px; height: 10px; background-color: #D73027;"></div>'
+            texto1 = "Malo " + x + " Regular " + x + " Adecuado " + x + " Bueno " + x
             left.write(f"<span style='font-size: 12px; color: #808080; font-family: Source Sans Pro, sans-serif;'>{texto}</span>", unsafe_allow_html=True)
             left.write(f"<span style='font-size: 12px; color: #000000; font-family: Source Sans Pro, sans-serif;'>{texto1}</span>", unsafe_allow_html=True)
             
