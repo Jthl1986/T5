@@ -606,35 +606,7 @@ def app5():
         if data_to_plot is not None:
             texto = "Rendimiento por cultivo"
             left.write(f"<span style='font-size: 12px; color: #808080; font-family: Source Sans Pro, sans-serif;'>{texto}</span>", unsafe_allow_html=True)
-            
-            # definir los colores a utilizar
-            colores = ['#D73027', '#FC8D59', '#ABDDA4', '#1A9641']
-            
-            # crear una figura y un eje
-            fig, ax = plt.subplots()
-            
-            # definir los valores y etiquetas a mostrar en el eje y
-            valores = [1, 2, 3, 4]
-            etiquetas = ['Malo', 'Regular', 'Adecuado', 'Bueno']
-            
-            # crear una lista con los textos y los cuadrados de color
-            texto_cuadrado = []
-            for i, etiqueta in enumerate(etiquetas):
-                # crear el texto con la etiqueta y el cuadrado de color
-                texto = f'{etiqueta} \n'
-                texto += f'▉ '  # agregar un cuadrado vacío
-                texto += f' '  # agregar un espacio para separar el cuadrado del texto
-                
-                # agregar el cuadrado con el color correspondiente
-                texto_cuadrado.append(ax.text(0, i, texto, ha='left', va='center', color=colores[i], transform=ax.transAxes))
-            
-            # ajustar el eje y para que tenga el mismo número de elementos que la lista de etiquetas
-            ax.set_ylim(-0.5, len(etiquetas)-0.5)
-            
-            # ajustar el tamaño de la figura para que quepan todos los textos y cuadrados
-            fig.tight_layout()
-            
-            plt.show()
+            st.write('<div style="width: 50px; height: 50px; background-color: #D73027;"></div>', unsafe_allow_html=True)
             
         colors = ['#000000', '#f7f7f7', '#2ca02c', '#ff7f0e']
         for cultivo in cultivo_limits.keys():
