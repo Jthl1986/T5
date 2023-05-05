@@ -501,17 +501,11 @@ def app5():
         
         #GRAFICO TORTA
         # Agrupar por tipo de campo y sumar la superficie
-        df_agrupado = dfp.groupby('Campos')['Superficie (has)'].sum()
-        
-        # Crear lista de texto para el gráfico de torta
-        labels_text = [f"{name}: {value:.2f} has" for name, value in zip(df_agrupado.index, df_agrupado.values)]
-        
+        df_agrupado = dfp.groupby('Campos')['Superficie (has)'].sum()        
         # Crear el gráfico de torta con Plotly
-        fig1 = px.pie(names=df_agrupado.index, values=df_agrupado.values, labels=df_agrupado.index, 
-                      text=labels_text)
-        fig1.update_layout(legend=dict(x=0.6, y=1.2, orientation="v", title="Propiedad de los campos"))
-        fig1.update_traces(textinfo="percent+text")
-        
+        fig1 = px.pie(names=df_agrupado.index, values=df_agrupado.values, 
+                     labels={'names':'Tipo de campo', 'values':'Superficie (has)'})      
+        fig1.update_layout(legend=dict(x=0.6, y=1.2, orientation="v", title="Propiedad de los campos")) 
         middle.plotly_chart(fig1, use_container_width=True)
         
         # Tabla dataframe entero
