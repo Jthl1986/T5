@@ -552,7 +552,7 @@ def app5():
                 for idx2, lim in enumerate(limits):
                     # Draw the bar
                     ax.barh([1], lim - prev_limit, left=prev_limit, height=h,
-                            color=palette[idx2])
+                            color=palette[idx2], edgecolor=palette[idx2], linewidth=0)
                     prev_limit = lim
                 rects = ax.patches
                 # The last item in the list is the value we're measuring
