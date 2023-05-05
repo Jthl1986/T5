@@ -610,9 +610,8 @@ def app5():
             r1 = f'<div style="width: 10px; height: 10px; background-color: #fcce59; display: inline-flex;"></div>'
             r2 = f'<div style="width: 10px; height: 10px; background-color: #ABDDA4; display: inline-flex;"></div>'
             r3 = f'<div style="width: 10px; height: 10px; background-color: #1A9641; display: inline-flex;"></div>'
-            texto1 = f"{r} <span style='font-size: 12px; font-family: Source Sans Pro, sans-serif;'>Malo</span> {r1} <span style='font-size: 12px; font-family: Source Sans Pro, sans-serif;'>Regular</span> {r2} <span style='font-size: 12px; font-family: Source Sans Pro, sans-serif;'>Adecuado</span> {r3} <span style='font-size: 12px; font-family: Source Sans Pro, sans-serif;'>Bueno</span>"
-            left.write(f"<span style='font-size: 12px; color: #000000; font-family: Source Sans Pro, sans-serif; margin-top: 0px;'>{texto1}</span>", unsafe_allow_html=True)
-
+            texto1 = f"{r} <span style='font-size: 12px; font-family: Source Sans Pro, sans-serif;'>Malo</span> {r1} <span style='font-size: 12px; font-family: Source Sans Pro, sans-serif;'>Regular</span> {r2} <span style='font-size: 12px; font-family: Source Sans Pro, sans-serif;'>Adecuado</span> {r3} <span style='font-size: 12px; font-family: Source Sans Pro, sans-serif; margin-top: 0px;'>Bueno</span>"
+            left.write(f"<span style='font-size: 12px; color: #000000; font-family: Source Sans Pro, sans-serif;'>{texto1}</span>", unsafe_allow_html=True)
                         
         colors = ['#000000', '#f7f7f7', '#2ca02c', '#ff7f0e']
         for cultivo in cultivo_limits.keys():
