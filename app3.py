@@ -611,7 +611,7 @@ def app5():
             r1 = f'<div style="width: 10px; height: 10px; background-color: #fcce59; display: inline-flex;"></div>'
             r2 = f'<div style="width: 10px; height: 10px; background-color: #ABDDA4; display: inline-flex;"></div>'
             r3 = f'<div style="width: 10px; height: 10px; background-color: #1A9641; display: inline-flex;"></div>'
-            texto1 = f"<span style='font-size: 12px; font-family: Source Sans Pro, sans-serif;'>{r} Malo {r1} Regular {r2} Adecuado {r3} Bueno</span>"
+            texto1 = f"<span style='font-size: 12px; font-family: Source Sans Pro, sans-serif;'>{r} Malo {r1} Regular {r2} Bueno {r3} Excelente</span>"
             left.write(f"{container}<span style='font-size: 12px; color: #000000; font-family: Source Sans Pro, sans-serif;'>{texto1}</span>", unsafe_allow_html=True)
 
                         
