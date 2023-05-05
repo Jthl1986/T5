@@ -606,8 +606,8 @@ def app5():
         if data_to_plot is not None:
             texto = "Rendimiento por cultivo"
             left.write(f"<span style='font-size: 12px; color: #808080; font-family: Source Sans Pro, sans-serif; margin-bottom: 5px;'>{texto}</span>", unsafe_allow_html=True)
-            r = f'<div style="width: 10px; height: 10px; background-color: #D73027; display: inline-flex;"></div>'
-            r1 = f'<div style="width: 10px; height: 10px; background-color: #FC8D59; display: inline-flex;"></div>'
+            r = f'<div style="width: 10px; height: 10px; background-color: #FC8D59; display: inline-flex;"></div>'
+            r1 = f'<div style="width: 10px; height: 10px; background-color: #fcce59; display: inline-flex;"></div>'
             r2 = f'<div style="width: 10px; height: 10px; background-color: #ABDDA4; display: inline-flex;"></div>'
             r3 = f'<div style="width: 10px; height: 10px; background-color: #1A9641; display: inline-flex;"></div>'
             texto1 = f"{r} <span style='font-size: 12px; font-family: Source Sans Pro, sans-serif;'>Malo</span> {r1} <span style='font-size: 12px; font-family: Source Sans Pro, sans-serif;'>Regular</span> {r2} <span style='font-size: 12px; font-family: Source Sans Pro, sans-serif;'>Adecuado</span> {r3} <span style='font-size: 12px; font-family: Source Sans Pro, sans-serif;'>Bueno</span>"
