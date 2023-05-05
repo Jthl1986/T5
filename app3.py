@@ -595,7 +595,7 @@ def app5():
             "Soja 2da": [1.5,2.15,2.8,6],
             "Girasol":[1.5,2,2.6,6],
             "Sorgo":[5,2,6.5,8,10],
-            #"Cebada Forrajera":[3.5,4.2,5,7],
+            "Cebada Forrajera":[3.5,4.2,5,7],
             #"Cebada Cervecera":[3.5,4.2,5,7]
             # Agregar límites para otros cultivos aquí
         }
