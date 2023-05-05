@@ -522,7 +522,7 @@ def app5():
         
             # Use the green palette as a sensible default
             if palette is None:
-                palette = sns.light_palette("blue", len(limits), reverse=False)
+                palette = sns.light_palette("blue", as_cmap=True, len(limits), reverse=False)
         
             # Must be able to handle one or many data sets via multiple subplots
             if len(data) == 1:
