@@ -522,7 +522,7 @@ def app5():
         
             # Use the green palette as a sensible default
             if palette is None:
-                palette = sns.color_palette("RdYlGn", len(limits), desat=.8, l=.9)
+                palette = sns.color_palette("RdYlGn", len(limits))
         
             # Must be able to handle one or many data sets via multiple subplots
             if len(data) == 1:
