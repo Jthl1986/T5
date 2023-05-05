@@ -514,7 +514,7 @@ def app5():
         
         def bulletgraph(data=None, limits=None, labels=None, axis_label=None, title="Rindes por cultivo",
                         size=(5, 3), palette=None, formatter=None, target_color="gray",
-                        bar_color="black", label_color="gray", show_title=True):
+                        bar_color="red", label_color="gray", show_title=True):
             
             # Determine the max value for adjusting the bar height
             # Dividing by 10 seems to work pretty well
@@ -607,7 +607,7 @@ def app5():
             texto = "Rendimiento por cultivo"
             left.write(f"<span style='font-size: 12px; color: #808080; font-family: Source Sans Pro, sans-serif;'>{texto}</span>", unsafe_allow_html=True)
         
-        colors = ['#fc0505', '#f7f7f7', '#2ca02c', '#ff7f0e']
+        colors = ['#000000', '#f7f7f7', '#2ca02c', '#ff7f0e']
         for cultivo in cultivo_limits.keys():
             cultivo_data = [(c, r, l, o) for c, r, l, o in data_to_plot if c == cultivo]
             if cultivo_data:
