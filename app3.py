@@ -589,7 +589,7 @@ def app5():
         
         # Definir los límites para cada cultivo
         cultivo_limits = {
-            "Maíz": [1.5, 3, 7],
+            "Maíz": [5, 7.25, 9.5, 11],
             "Trigo": [2, 4, 7],
             "Soja 1ra": [1.8 , 2.9 , 4, 7],
             # Agregar límites para otros cultivos aquí
