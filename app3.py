@@ -560,8 +560,8 @@ def app5():
                 # Need the ymin and max in order to make sure the target marker
                 # fits
                 ymin, ymax = ax.get_ylim()
-                ax.vlines(
-                    item[2], ymin * .9, ymax * .9, linewidth=1.5, color=target_color)
+                ax.vlines(item[2], ymin, ymax, linewidth=3, color=target_color)
+
         
             # Now make some labels
             if labels is not None:
