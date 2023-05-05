@@ -541,8 +541,8 @@ def app5():
                 ax.set_aspect('equal')
                 ax.set_yticklabels([item[0]])
                 ax.set_yticks([1])
-                ax.set_xticks([1, 2, 3, 4, 5, 6, 7]) # Agregado
-                ax.set_xticklabels([1, 2, 3, 4, 5, 6, 7], fontsize=12) # Agregado
+                ax.set_xticks([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) # Agregado
+                ax.set_xticklabels([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], fontsize=12) # Agregado
                 ax.spines['bottom'].set_visible(False)
                 ax.spines['top'].set_visible(False)
                 ax.spines['right'].set_visible(False)
