@@ -513,7 +513,7 @@ def app5():
 
         #BULLET       
         def bulletgraph(data=None, limits=None, labels=None, axis_label=None, title="Rindes por cultivo",
-                        size=(5, 3), palette=None, formatter=None, target_color="gray",
+                        size=(5, 3), palette=None, formatter=None, target_color="red",
                         bar_color="red", label_color="gray", show_title=True):
             
             # Determine the max value for adjusting the bar height
