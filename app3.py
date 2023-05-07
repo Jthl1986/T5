@@ -635,7 +635,8 @@ def app5():
         
     if dfs is not None:
         left, right = st.columns(2)
-        left.subheader("Existencias de granos")
+        valuacion_total = st.session_state.dfs['Valuación'].sum()
+        left.subheader("Existencias de granos: ", '${:,}'.format(valuacion_total))
         left.table(dfs.style.format({"Cantidad (tn)":"{:.0f}", "Valuación":"${:,}"}))
        
     if dfx is not None:
