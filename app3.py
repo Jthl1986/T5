@@ -562,7 +562,10 @@ def app5():
                 # Need the ymin and max in order to make sure the target marker
                 # fits
                 ymin, ymax = ax.get_ylim()
-                ax.vlines(item[2], ymin, ymax, linewidth=3, color=target_color)
+                if len(item) > 5 and item[5] == "red":
+                    ax.vlines(item[4], ymin, ymax, linewidth=3, color=item[5])
+                else:
+                    ax.vlines(item[3], ymin, ymax, linewidth=3, color=target_color)
 
         
             # Now make some labels
@@ -604,7 +607,7 @@ def app5():
         data_to_plot = []
         for cultivo, rinde in zip(dfp["Cultivo"], dfp["Rinde"]):
             if cultivo == "Soja 1ra":
-                data_to_plot.append((cultivo, rinde, cultivo_limits[cultivo], 4, 3.5))
+                data_to_plot.append((cultivo, rinde, cultivo_limits[cultivo], 4, 3.5, "red"))
             else:
                 data_to_plot.append((cultivo, rinde, cultivo_limits[cultivo], 4))
         
