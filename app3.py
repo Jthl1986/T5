@@ -610,6 +610,16 @@ def app5():
                 data_to_plot.append((cultivo, rinde, cultivo_limits[cultivo], 4, 3.5, "red"))
             elif cultivo == "Trigo":
                 data_to_plot.append((cultivo, rinde, cultivo_limits[cultivo], 4, 5, "red"))
+            elif cultivo == "Soja 2da":
+                data_to_plot.append((cultivo, rinde, cultivo_limits[cultivo], 4, 5, "red"))
+            elif cultivo == "Girasol":
+                data_to_plot.append((cultivo, rinde, cultivo_limits[cultivo], 4, 5, "red"))
+            elif cultivo == "Sorgo":
+                data_to_plot.append((cultivo, rinde, cultivo_limits[cultivo], 4, 5, "red"))
+            elif cultivo == "Maíz":
+                data_to_plot.append((cultivo, rinde, cultivo_limits[cultivo], 4, 5, "red"))
+            elif cultivo == "Cebada Forrajera" or cultivo == "Cebada Cervecera":
+                data_to_plot.append((cultivo, rinde, cultivo_limits[cultivo], 4, 5, "red"))
         
         # Aumentar el tamaño de la fuente de los nombres de los cultivos
         plt.rc('xtick', labelsize=20)
