@@ -604,7 +604,7 @@ def app5():
         data_to_plot = []
         for cultivo, rinde in zip(dfp["Cultivo"], dfp["Rinde"]):
             if cultivo == "Soja 1ra":
-                data_to_plot.append((cultivo, rinde, cultivo_limits[cultivo], 4, 3))
+                data_to_plot.append((cultivo, rinde, cultivo_limits[cultivo], 5, 3))
             else:
                 data_to_plot.append((cultivo, rinde, cultivo_limits[cultivo], 4))
         
