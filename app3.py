@@ -511,7 +511,7 @@ def app5():
         # Tabla dataframe entero
         st.dataframe(dfp.style.format({"Superficie (has)":"{:.0f}", "Rinde":"{:,}", "Ingreso":"${:,}", "Costos directos":"${:,}", "Gastos comercialización":"${:,}", "Margen bruto":"${:,}"}))
 
-        
+        #BULLET       
         def bulletgraph(data=None, limits=None, labels=None, axis_label=None, title="Rindes por cultivo",
                         size=(5, 3), palette=None, formatter=None, target_color="gray",
                         bar_color="red", label_color="gray", show_title=True):
@@ -601,7 +601,12 @@ def app5():
         }
     
         # Obtener una lista de tuplas de cultivo y rinde
-        data_to_plot = [(cultivo, rinde, cultivo_limits[cultivo], 4) for cultivo, rinde in zip(dfp["Cultivo"], dfp["Rinde"])]
+        data_to_plot = []
+        for cultivo, rinde in zip(dfp["Cultivo"], dfp["Rinde"]):
+            if cultivo == "Soja 1ra":
+                data_to_plot.append((cultivo, rinde, cultivo_limits[cultivo], 4, 3))
+            else:
+                data_to_plot.append((cultivo, rinde, cultivo_limits[cultivo], 4))
         
         # Aumentar el tamaño de la fuente de los nombres de los cultivos
         plt.rc('xtick', labelsize=20)
