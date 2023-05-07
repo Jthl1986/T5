@@ -608,8 +608,8 @@ def app5():
         for cultivo, rinde in zip(dfp["Cultivo"], dfp["Rinde"]):
             if cultivo == "Soja 1ra":
                 data_to_plot.append((cultivo, rinde, cultivo_limits[cultivo], 4, 3.5, "red"))
-            else:
-                data_to_plot.append((cultivo, rinde, cultivo_limits[cultivo], 4))
+            elif cultivo == "Trigo":
+                data_to_plot.append((cultivo, rinde, cultivo_limits[cultivo], 4, 5, "red"))
         
         # Aumentar el tamaño de la fuente de los nombres de los cultivos
         plt.rc('xtick', labelsize=20)
