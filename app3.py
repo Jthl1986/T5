@@ -604,7 +604,7 @@ def app5():
         data_to_plot = []
         for cultivo, rinde in zip(dfp["Cultivo"], dfp["Rinde"]):
             if cultivo == "Soja 1ra":
-                data_to_plot.append((cultivo, rinde, cultivo_limits[cultivo], 5, 3))
+                data_to_plot.append((cultivo, rinde, cultivo_limits[cultivo], 4, 3))
             else:
                 data_to_plot.append((cultivo, rinde, cultivo_limits[cultivo], 4))
         
@@ -627,7 +627,7 @@ def app5():
                         
         colors = ['#000000', '#f7f7f7', '#2ca02c', '#ff7f0e']
         for cultivo in cultivo_limits.keys():
-            cultivo_data = [(c, r, l, o) for c, r, l, o in data_to_plot if c == cultivo]
+            cultivo_data = [(c, r, l, o, m) for c, r, l, o, m in data_to_plot if c == cultivo]
             if cultivo_data:
                 bulletgraph(cultivo_data, limits=cultivo_limits[cultivo], labels=[], size=(8,5),
                             label_color="black", bar_color=colors[0], target_color=colors[1], show_title=False)
