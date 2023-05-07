@@ -630,7 +630,7 @@ def app5():
                         
         colors = ['#000000', '#f7f7f7', '#2ca02c', '#ff7f0e']
         for cultivo in cultivo_limits.keys():
-            cultivo_data = [(c, r, l, o, m) for c, r, l, o, m in data_to_plot if c == cultivo]
+            cultivo_data = [(c, r, l, o, m, x) for c, r, l, o, m, x in data_to_plot if c == cultivo]
             if cultivo_data:
                 bulletgraph(cultivo_data, limits=cultivo_limits[cultivo], labels=[], size=(8,5),
                             label_color="black", bar_color=colors[0], target_color=colors[1], show_title=False)
