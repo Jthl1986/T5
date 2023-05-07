@@ -641,7 +641,7 @@ def app5():
        
     if dfx is not None:
         left, right = st.columns(2)
-        valuacion_total = st.session_state.dfx['Valuación'].sum()
+        valuacion_total = st.session_state.dfx["ingresos_totales"].sum()
         left.subheader(f"Ingresos Servicios agrícolas: ${valuacion_total:,}")
         left.table(dfx.style.format({"Superficie(ha)":"{:.0f}", "Precio":"${:,}", "Ingreso estimado":"${:,}"}))
    
