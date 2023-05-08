@@ -763,6 +763,8 @@ elif my_button == 'Cuadro resumen':
 else:    
     app4()
 with st.sidebar:
+    url = 'https://img.freepik.com/vector-premium/logotipo-tractor-o-plantilla-logotipo-granja-adecuada-cualquier-negocio-relacionado-industrias-agricolas_565585-51.jpg?w=740'
+    st.sidebar.image(url, width=200)
     st.markdown("---")
     st_lottie(lottie_book, speed=0.5, height=50, key="initial")
     st.markdown("---")
