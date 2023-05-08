@@ -421,15 +421,13 @@ def app4():
     datos = []
     if "dfp" not in st.session_state:
         st.session_state.dfp = pd.DataFrame(columns=('Región', 'Campos', 'Cultivo', 'Superficie (has)', 'Rinde', 'Ingreso', 'Costos directos', 'Gastos comercialización','Margen bruto'))
-    advertencia = False
-    if submit:
-        if propio == "Aparcería" and aparceria == 0:
-            st.warning("Falta completar porcentaje de aparcería")
-            advertencia = True
-    if not advertencia:
+    if submit and (propio != "Aparcería" or aparceria != 0):
         datos.append(lista())
         dfo = pd.DataFrame(datos, columns=('Región', 'Campos','Cultivo', 'Superficie (has)', 'Rinde', 'Ingreso', 'Costos directos','Gastos comercialización', 'Margen bruto'))
         st.session_state.dfp = pd.concat([st.session_state.dfp, dfo])
+    else:
+        st.warning("Falta completar porcentaje de aparcería")
+    
     st.dataframe(st.session_state.dfp.style.format({"Superficie (has)":"{:.0f}", "Rinde":"{:,}", "Ingreso":"${:,}", "Costos directos":"${:,}", "Gastos comercialización":"${:,}", "Margen bruto":"${:,}"}))
     css()
     delete_last_row = left.button("Borrar última fila")
