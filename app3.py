@@ -497,11 +497,7 @@ def app5():
         fig = px.bar(df_grouped, x='Cultivo', y='Superficie (has)', color='Cultivo', color_discrete_sequence=colors)
         # Ajustar el margen inferior y superior del gráfico
         fig.update_layout(margin=dict(t=0, b=0))
-        fig.update_traces(text=[], textposition='auto')  # Inicializar la lista 'text'
-        for i, row in df_grouped.iterrows():
-            fig.data[0].text[i] = f"{row['Superficie (has)']:.0f} has"
         right.plotly_chart(fig, use_container_width=True)
-
         
         #GRAFICO TORTA
         # Agrupar por tipo de campo y sumar la superficie
