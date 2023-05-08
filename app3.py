@@ -763,7 +763,7 @@ elif my_button == 'Cuadro resumen':
 else:    
     app4()
 with st.sidebar:
-    url = '	https://png.pngtree.com/png-clipart/20190516/origi…logo-design-template-vector-png-image_3554514.jpg'
+    url = 'https://png.pngtree.com/png-clipart/20190516/original/pngtree-pin-map-leaf-sprout-agriculture-logo-design-template-vector-png-image_3554514.jpg'
     st.sidebar.image(url, width=200)
     st.markdown("---")
     st_lottie(lottie_book, speed=0.5, height=50, key="initial")
