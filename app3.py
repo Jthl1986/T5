@@ -652,53 +652,31 @@ def app5():
         st.write ("Sin planteo productivo o falta cargar gastos de estructura")
         
     if dfs is not None or dfx is not None or dfa is not None:
-        if dfs is not None and dfx is not None:
-            left, middle, right = st.beta_columns(3)
-        elif dfs is not None and dfa is not None:
-            left, right = st.beta_columns(2)
-            middle = None
-        elif dfx is not None and dfa is not None:
-            middle, right = st.beta_columns(2)
-            left = None
+        if (dfs is not None and dfx is not None) or (dfs is not None and dfa is not None) or (dfx is not None and dfa is not None):
+            right, left = st.beta_columns(2)
         else:
             left = st
-            middle = None
-            right = None
-        
         if dfs is not None:
             valuacion_total = st.session_state.dfs['Valuación'].sum()
-            if middle:
-                middle.subheader(f"Existencia de granos: ${valuacion_total:,}")
-                middle.table(dfs.style.format({"Cantidad (tn)":"{:.0f}", "Valuación":"${:,}"}))
-            else:
-                left.subheader(f"Existencia de granos: ${valuacion_total:,}")
-                left.table(dfs.style.format({"Cantidad (tn)":"{:.0f}", "Valuación":"${:,}"}))
-        
+            left.subheader(f"Existencia de granos: ${valuacion_total:,}")
+            left.table(dfs.style.format({"Cantidad (tn)":"{:.0f}", "Valuación":"${:,}"}))
         if dfx is not None:
             valuacion_total = st.session_state.dfx["Ingreso estimado"].sum()
             if right:
                 right.subheader(f"Ingresos Serv. agrícolas: ${valuacion_total:,}")
                 right.table(dfx.style.format({"Superficie(ha)":"{:.0f}", "Precio":"${:,}", "Ingreso estimado":"${:,}"}))
             else:
-                if middle:
-                    middle.subheader(f"Ingresos Serv. agrícolas: ${valuacion_total:,}")
-                    middle.table(dfx.style.format({"Superficie(ha)":"{:.0f}", "Precio":"${:,}", "Ingreso estimado":"${:,}"}))
-                else:
-                    left.subheader(f"Ingresos Serv. agrícolas: ${valuacion_total:,}")
-                    left.table(dfx.style.format({"Superficie(ha)":"{:.0f}", "Precio":"${:,}", "Ingreso estimado":"${:,}"}))
-        
+                left.subheader(f"Ingresos Serv. agrícolas: ${valuacion_total:,}")
+                left.table(dfx.style.format({"Superficie(ha)":"{:.0f}", "Precio":"${:,}", "Ingreso estimado":"${:,}"}))
         if dfa is not None:
             valuacion_total = st.session_state.dfa['Valuación'].sum()
             if right:
                 right.subheader(f"Existencia de hacienda: ${valuacion_total:,}")
                 right.table(dfa.style.format({"Cantidad":"{:.0f}", "Peso":"{:.0f}", "Valuación":"${:,}"}))
             else:
-                if middle:
-                    middle.subheader(f"Existencia de hacienda: ${valuacion_total:,}")
-                    middle.table(dfa.style.format({"Cantidad":"{:.0f}", "Peso":"{:.0f}", "Valuación":"${:,}"}))
-                else:
-                    left.subheader(f"Existencia de hacienda: ${valuacion_total:,}")
-                    left.table(dfa.style.format({"Cantidad":"{:.0f}", "Peso":"{:.0f}", "Valuación":"${:,}"}))
+                left.subheader(f"Existencia de hacienda: ${valuacion_total:,}")
+                left.table(dfa.style.format({"Cantidad":"{:.0f}", "Peso":"{:.0f}", "Valuación":"${:,}"}))
+
 
         
         
