@@ -421,9 +421,12 @@ def app4():
     datos = []
     if "dfp" not in st.session_state:
         st.session_state.dfp = pd.DataFrame(columns=('Región', 'Campos', 'Cultivo', 'Superficie (has)', 'Rinde', 'Ingreso', 'Costos directos', 'Gastos comercialización','Margen bruto'))
+    advertencia = False
     if submit:
         if propio == "Aparcería" and aparceria == 0:
-            st.warning("Debe completar porcentaje de aparcería")
+            st.warning("Falta completar porcentaje de aparcería")
+            advertencia = True
+    if not advertencia:
         datos.append(lista())
         dfo = pd.DataFrame(datos, columns=('Región', 'Campos','Cultivo', 'Superficie (has)', 'Rinde', 'Ingreso', 'Costos directos','Gastos comercialización', 'Margen bruto'))
         st.session_state.dfp = pd.concat([st.session_state.dfp, dfo])
