@@ -396,7 +396,7 @@ def app4():
     def lista():
         def valor1():
             if aparceria != 0:
-                return valors * cost * gc * aparceria
+                return precio*dol*rinde*cantidad*aparceria
             else:
                 return precio*dol*rinde*cantidad
         valors = round(valor1())
