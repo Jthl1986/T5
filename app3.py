@@ -395,14 +395,14 @@ def app4():
     # Imprimir la lista de datos        
     def lista():
         def valor1():
-            if aparceria != 0:
+            if propio == "Aparcería":
                 return precio*dol*rinde*cantidad*aparceria
             else:
                 return precio*dol*rinde*cantidad
         valors = round(valor1())
         
         def costo1():
-            if aparceria != 0:
+            if propio == "Aparcería":
                 return costo*dol*cantidad*aparceria
             else:
                 return costo*dol*cantidad
