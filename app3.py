@@ -324,6 +324,7 @@ def app4():
     gast = form2.number_input("Gastos de estructura", step=1)
     arrendamiento = form2.number_input("Gastos de arrendamiento", step=1)
     aparceria = form2.number_input("Porcentaje de aparcería", step=1)
+    aparceria = aparceria/100
     submit2 = form2.form_submit_button("Ingresar")
     
     #unpacking
@@ -394,11 +395,17 @@ def app4():
     # Imprimir la lista de datos        
     def lista():
         def valor1():
-            return precio*dol*rinde*cantidad
+            if aparceria != 0:
+                return valors * cost * gc * aparceria
+            else:
+                return precio*dol*rinde*cantidad
         valors = round(valor1())
         
         def costo1():
-            return costo*dol*cantidad
+            if aparceria != 0:
+                return costo*dol*cantidad*aparceria
+            else:
+                return costo*dol*cantidad
         cost = round(costo1())
         
         def gc1():
