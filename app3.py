@@ -174,8 +174,8 @@ def app1():
     ptrigo= data2.iloc[2,1]
     pptrigo = int(ptrigo[1:])
     pgira= data2.iloc[4,1]
-    ppgira = 74400 #int(pgira[1:])
-    ppsorgo = 44400
+    ppgira = 95000 #int(pgira[1:])
+    ppsorgo = 70000
     fecha = data2.columns[1][7:]
     st.title("🌾 Valuación de granos")
     st.write(f'Precios de pizarra del Mercado de Rosario al {fecha}')
