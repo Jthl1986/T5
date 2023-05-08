@@ -492,18 +492,14 @@ def app5():
 
         # Barras en tres columnas izquierda
         left, middle, right = st.beta_columns(3)
-        
         df_grouped = dfp.groupby('Cultivo')['Superficie (has)'].sum().reset_index()
         colors = px.colors.qualitative.Plotly
         fig = px.bar(df_grouped, x='Cultivo', y='Superficie (has)', color='Cultivo', color_discrete_sequence=colors)
-        
-        # Agregar texto con la superficie en cada barra
-        for i, row in df_grouped.iterrows():
-            fig.data[0].text[i] = f"{row['Superficie (has)']:.0f} has"
-        
         # Ajustar el margen inferior y superior del gráfico
         fig.update_layout(margin=dict(t=0, b=0))
-        
+        fig.update_traces(text=[], textposition='auto')  # Inicializar la lista 'text'
+        for i, row in df_grouped.iterrows():
+            fig.data[0].text[i] = f"{row['Superficie (has)']:.0f} has"
         right.plotly_chart(fig, use_container_width=True)
 
         
