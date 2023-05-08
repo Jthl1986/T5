@@ -493,15 +493,25 @@ def app5():
         # Barras en tres columnas izquierda
         left, middle, right = st.beta_columns(3)
         df_grouped = dfp.groupby('Cultivo')['Superficie (has)'].sum().reset_index()
+        
         colors = px.colors.qualitative.Plotly
         fig = px.bar(df_grouped, x='Cultivo', y='Superficie (has)', color='Cultivo', color_discrete_sequence=colors)
         
-        # Agregar texto en cada barra
+        # Add text labels to show the total area for each crop
         for i, row in df_grouped.iterrows():
-            fig.data[0].text[i] = f"{row['Superficie (has)']:.0f} has"
+            if fig.data and len(fig.data) > 0:
+                fig.data[0].text[i] = f"{row['Superficie (has)']:.0f} has"
+            else:
+                break
         
-        # Ajustar el margen inferior y superior del gráfico
-        fig.update_layout(margin=dict(t=0, b=0))
+        # Adjust the layout of the chart
+        fig.update_layout(
+            margin=dict(t=0, b=0),
+            xaxis_title="Cultivo",
+            yaxis_title="Superficie (has)",
+            legend_title="Cultivo"
+        )
+        
         right.plotly_chart(fig, use_container_width=True)
         
         #GRAFICO TORTA
