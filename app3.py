@@ -664,7 +664,7 @@ def app5():
         start = pd.date_range(start='2021-01', end ="2021-05", freq='M')
         end = pd.date_range(start='2021-05', end ="2021-09", freq='M')
         df= pd.DataFrame({'start':start,'end':end}, index=cultivos)
-        df['country']=df.index
+        df['cultivos']=df.index
         fig = px.timeline(df,  y = 'cultivos', x_start='start', x_end = 'end', color= 'cultivos', color_discrete_sequence=px.colors.qualitative.D3)
         st.plotly_chart(fig)
         
