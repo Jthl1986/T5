@@ -660,18 +660,20 @@ def app5():
                 left.pyplot()
                 
         # Creamos un DataFrame con los cultivos y los meses del año
-        # Creamos un DataFrame con los cultivos y los meses del año
-        cultivos = ['Soja', 'Maiz', 'Trigo', 'Girasol']
-        start = pd.date_range(start='2021-01', end="2021-05", freq='M')
-        end = pd.date_range(start='2021-05', end="2021-09", freq='M')
-        df = pd.DataFrame({'start': start, 'end': end}, index=cultivos)
+        cultivos = ['Soja 1ra', 'Soja 2da', 'Maiz', 'Trigo', 'Girasol', 'Sorgo', 'Cebada']
+        start = pd.date_range(start='2021-01', end ="2021-12", freq='MS')
+        end = pd.date_range(start='2021-02', end ="2022-01", freq='MS') - pd.Timedelta(days=1)
+        df= pd.DataFrame({'Cultivos':cultivos,'start':start,'end':end})
         
-        fig = px.timeline(df, x_start='start', x_end='end', color=df.index, range_x=[start[0], end[-1]],
-                          color_discrete_sequence=px.color.qualitative.D3, labels={'color': 'Cultivos'})
-        fig.update_layout(yaxis={'categoryorder': 'total ascending'})
-        fig.update_traces(marker=dict(colors=['#1f77b4', '#ff7f0e', '#2ca02c']))
+        # Especificamos los colores de las barras
+        colors = px.colors.qualitative.D3[:3]
+        
+        fig = px.timeline(df,  y = 'Cultivos', x_start='start', x_end = 'end', 
+                           color_discrete_sequence=colors, 
+                           labels={'start': 'Mes de inicio', 'end': 'Mes de fin'})
         
         st.plotly_chart(fig, use_container_width=True)
+
 
         
 
