@@ -660,23 +660,17 @@ def app5():
                 left.pyplot()
                 
         # Creamos un DataFrame con los cultivos y los meses del año
+        # Creamos un DataFrame con los cultivos y los meses del año
         cultivos = ['Soja', 'Maiz', 'Trigo', 'Girasol']
-        start = pd.to_datetime(['2021-01', '2021-02', '2021-03', '2021-04'])
-        end = pd.to_datetime(['2021-04', '2021-05', '2021-06', '2021-07'])
-        df= pd.DataFrame({'start':start,'end':end}, index=cultivos)
+        start = pd.date_range(start='2021-01', end="2021-05", freq='M')
+        end = pd.date_range(start='2021-05', end="2021-09", freq='M')
+        df = pd.DataFrame({'start': start, 'end': end}, index=cultivos)
         
-        # Creamos las columnas para los segmentos
-        df['siembra'] = df['start']
-        df['temporada media'] = df['start'] + pd.DateOffset(months=1)
-        df['cosecha'] = df['end']
+        fig = px.timeline(df, x_start='start', x_end='end', color=df.index, range_x=[start[0], end[-1]],
+                          color_discrete_sequence=px.colors.qualitative.D3, labels={'color': 'Cultivos'})
+        fig.update_layout(yaxis={'categoryorder': 'total ascending'})
+        fig.update_traces(marker=dict(colors=['#1f77b4', '#ff7f0e', '#2ca02c']))
         
-        # Graficamos el diagrama de Gantt
-        fig = px.timeline(df, y='index', x_start='siembra', x_end='cosecha', color_discrete_sequence=['red', 'green', 'blue'], title='Calendario de cultivos')
-        fig.update_yaxes(title='Cultivo')
-        fig.update_xaxes(title='Mes')
-        fig.show()
-
-        # Mostramos la figura en Streamlit
         st.plotly_chart(fig, use_container_width=True)
 
         
