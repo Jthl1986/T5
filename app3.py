@@ -660,22 +660,15 @@ def app5():
                 left.pyplot()
                 
         # Creamos un DataFrame con los cultivos y los meses del año
-        cultivos = ['soja 1ra', 'soja 2da', 'maiz', 'trigo', 'girasol', 'sorgo', 'cebada']
-        meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-        siembra = pd.DataFrame(index=cultivos, columns=meses)
-        siembra.fillna(0, inplace=True)
+        cultivos = ['Soja', 'Maiz', 'Trigo', 'Girasol']
+        start = pd.date_range(start='Enero', end ="Diciembre", freq='M')
+        end = pd.date_range(start='Enero', end ="Diciembre", freq='M')
+        df= pd.DataFrame({'start':start,'end':end}, index=cultivos)
         
-        # Podemos llenar los datos de siembra de forma aleatoria para este ejemplo
-        import random
-        for cultivo in cultivos:
-            for mes in meses:
-                siembra.loc[cultivo, mes] = random.randint(100, 1000)
+        df['country']=df.index
+        px.timeline(df,  y = 'Cultivos', x_start='start', x_end = 'end', color= 'Cultivos', color_discrete_sequence=px.colors.qualitative.D3)
         
-        # Usamos Plotly para crear un gráfico de línea que muestra la variación de la siembra de cada cultivo a lo largo del año
-        df = siembra.stack().reset_index()
-        df.columns = ['Cultivo', 'Mes', 'Siembra']
-        fig = px.line(df, x='Mes', y='Siembra', color='Cultivo')
-        st.plotly_chart(fig, use_container_width=True)
+        
         
 
     if dfp is not None and df1 is None:
