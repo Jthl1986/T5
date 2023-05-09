@@ -660,22 +660,14 @@ def app5():
                 left.pyplot()
                 
         # Creamos un DataFrame con los cultivos y los meses del año
+        # Creamos un DataFrame con los cultivos y los meses del año
         cultivos = ['Soja', 'Maiz', 'Trigo', 'Girasol']
         start = pd.date_range(start='2021-01', end ="2021-05", freq='M')
         end = pd.date_range(start='2021-05', end ="2021-09", freq='M')
-        df= pd.DataFrame({'start':start,'end':end}, index=cultivos)
+        df = pd.DataFrame({'start': start, 'end': end}, index=cultivos)
         
-        # Agregamos tres columnas adicionales, correspondientes a cada sección de la barra
-        df['siembra'] = df['start'] + (df['end'] - df['start']) * 0.33
-        df['temporada media'] = df['start'] + (df['end'] - df['start']) * 0.66
-        df['cosecha'] = df['end']
-        
-        # Usamos la función px.timeline para trazar las barras, asignando colores diferentes a cada sección
-        fig = px.timeline(df, y='Cultivos', x_start='start', x_end='end', color_discrete_sequence=['#1f77b4']*3,
-                          color_discrete_map={'siembra': '#ff7f0e', 'temporada media': '#2ca02c', 'cosecha': '#d62728'},
-                          hover_data={'siembra': False, 'temporada media': False, 'cosecha': False})
-        fig.update_traces(marker=dict(line=dict(width=0)), selector=dict(type='bar'))
-        fig.update_layout(showlegend=False, height=400)
+        df['Cultivos'] = df.index
+        fig = px.timeline(df, y='Cultivos', x_start='start', x_end='end', color='Cultivos', color_discrete_sequence=px.colors.qualitative.D3)
         st.plotly_chart(fig, use_container_width=True)
         
         
