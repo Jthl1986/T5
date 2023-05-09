@@ -660,13 +660,14 @@ def app5():
                 left.pyplot()
                 
         # Creamos un DataFrame con los cultivos y los meses del año
+        # Creamos un DataFrame con los cultivos y los meses del año
         cultivos = ['Soja', 'Maiz', 'Trigo', 'Girasol']
         start = pd.date_range(start='2021-01', end ="2021-05", freq='M')
         end = pd.date_range(start='2021-05', end ="2021-09", freq='M')
-        df= pd.DataFrame({'start':start,'end':end}, index=cultivos)
+        df = pd.DataFrame({'start': start, 'end': end}, index=cultivos)
         
-        df['country']=df.index
-        fig = px.timeline(df,  y = 'Cultivos', x_start='start', x_end = 'end', color= 'Cultivos', color_discrete_sequence=px.colors.qualitative.D3)
+        df['Cultivos'] = df.index
+        fig = px.timeline(df, y='Cultivos', x_start='start', x_end='end', color='Cultivos', color_discrete_sequence=px.colors.qualitative.D3)
         st.plotly_chart(fig, use_container_width=True)
         
         
