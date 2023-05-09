@@ -666,8 +666,8 @@ def app5():
         df= pd.DataFrame({'start':start,'end':end}, index=cultivos)
         
         df['country']=df.index
-        px.timeline(df,  y = 'Cultivos', x_start='start', x_end = 'end', color= 'Cultivos', color_discrete_sequence=px.colors.qualitative.D3)
-        
+        fig = px.timeline(df,  y = 'Cultivos', x_start='start', x_end = 'end', color= 'Cultivos', color_discrete_sequence=px.colors.qualitative.D3)
+        st.plotly_chart(fig, use_container_width=True)
         
         
 
