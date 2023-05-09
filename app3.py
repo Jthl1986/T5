@@ -675,7 +675,7 @@ def app5():
         df = siembra.stack().reset_index()
         df.columns = ['Cultivo', 'Mes', 'Siembra']
         fig = px.line(df, x='Mes', y='Siembra', color='Cultivo')
-        fig.show()
+        st.plotly_chart(fig, use_container_width=True)
         
 
     if dfp is not None and df1 is None:
