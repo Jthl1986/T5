@@ -659,15 +659,16 @@ def app5():
                 plt.box(False)
                 left.pyplot()
                 
+
         # Creamos un DataFrame con los cultivos y los meses del año
         cultivos = ['Soja 1ra', 'Soja 2da', 'Maiz', 'Trigo']
-        start = pd.date_range(start='2021-01', end ="2021-05", freq='M')
-        end = pd.date_range(start='2021-05', end ="2021-09", freq='M')
-        df= pd.DataFrame({'start':start,'end':end}, index=cultivos)
-        df['cultivos']=df.index
-        fig = px.timeline(df,  y = 'cultivos', x_start='start', x_end = 'end', color= 'cultivos', color_discrete_sequence=px.colors.qualitative.D3)
+        meses = pd.date_range(start='2021-01', end='2021-12', freq='MS').strftime('%b')
+        start = pd.date_range(start='2021-01', end='2021-05', freq='M')
+        end = pd.date_range(start='2021-05', end='2021-09', freq='M')
+        df = pd.DataFrame({'cultivos': cultivos, 'start': start, 'end': end, 'meses': meses})
+        fig = px.timeline(df, y='cultivos', x_start='start', x_end='end', color='cultivos', color_discrete_sequence=px.colors.qualitative.D3, labels={'meses': 'Meses'})
         st.plotly_chart(fig)
-        
+                
         
 
     if dfp is not None and df1 is None:
