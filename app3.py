@@ -661,14 +661,13 @@ def app5():
                 
 
         # Creamos un DataFrame con los cultivos y los meses del año
-        cultivos = ['Soja 1ra', 'Soja 2da', 'Maiz', 'Trigo']
-        meses = pd.date_range(start='2021-01', end='2021-12', freq='MS').strftime('%b')
-        start = pd.date_range(start='2021-01', end='2021-05', freq='M')
-        end = pd.date_range(start='2021-05', end='2021-09', freq='M')
+        cultivos = ['Soja 1ra', 'Soja 2da', 'Maiz', 'Trigo'] * 3  # Repetimos la lista 3 veces para tener 12 elementos
+        meses = pd.date_range(start='2021-01', end='2021-12', freq='MS').strftime('%b')[:9]  # Tomamos solo los primeros 9 meses
+        start = pd.date_range(start='2021-01', end='2021-05', freq='M') + pd.DateOffset(years=1)  # Añadimos un año para tener 12 meses
+        end = pd.date_range(start='2021-05', end='2021-09', freq='M') + pd.DateOffset(years=1)  # Añadimos un año para tener 12 meses
         df = pd.DataFrame({'cultivos': cultivos, 'start': start, 'end': end, 'meses': meses})
         fig = px.timeline(df, y='cultivos', x_start='start', x_end='end', color='cultivos', color_discrete_sequence=px.colors.qualitative.D3, labels={'meses': 'Meses'})
         st.plotly_chart(fig)
-                
         
 
     if dfp is not None and df1 is None:
