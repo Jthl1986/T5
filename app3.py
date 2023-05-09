@@ -661,8 +661,8 @@ def app5():
                 
         # Creamos un DataFrame con los cultivos y los meses del año
         cultivos = ['Soja', 'Maiz', 'Trigo', 'Girasol']
-        start = pd.date_range(start='Enero', end ="Diciembre", freq='M')
-        end = pd.date_range(start='Enero', end ="Diciembre", freq='M')
+        start = pd.date_range(start='2021-01', end ="2021-05", freq='M')
+        end = pd.date_range(start='2021-05', end ="2021-09", freq='M')
         df= pd.DataFrame({'start':start,'end':end}, index=cultivos)
         
         df['country']=df.index
