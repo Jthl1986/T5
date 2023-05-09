@@ -660,27 +660,22 @@ def app5():
                 left.pyplot()
                 
         # Creamos un DataFrame con los cultivos y los meses del año
-        cultivos = ['Soja 1ra', 'Soja 2da', 'Maíz', 'Trigo', 'Girasol', 'Sorgo', 'Cebada']
-        months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+        cultivos = ['Soja', 'Maiz', 'Trigo', 'Girasol']
+        start = pd.to_datetime(['2021-01', '2021-02', '2021-03', '2021-04'])
+        end = pd.to_datetime(['2021-04', '2021-05', '2021-06', '2021-07'])
+        df= pd.DataFrame({'start':start,'end':end}, index=cultivos)
         
-        data = []
-        for cultivo in cultivos:
-            for i in range(12):
-                data.append([cultivo, months[i]])
+        # Creamos las columnas para los segmentos
+        df['siembra'] = df['start']
+        df['temporada media'] = df['start'] + pd.DateOffset(months=1)
+        df['cosecha'] = df['end']
         
-        df = pd.DataFrame(data, columns=['Cultivo', 'Mes'])
-        
-        # Agregamos las columnas para los segmentos
-        df['Siembra'] = df['Mes'].apply(lambda x: True if x in ['Octubre', 'Noviembre', 'Diciembre', 'Enero', 'Febrero'] else False)
-        df['Temporada Media'] = df['Mes'].apply(lambda x: True if x in ['Marzo', 'Abril', 'Mayo', 'Junio'] else False)
-        df['Cosecha'] = df['Mes'].apply(lambda x: True if x in ['Julio', 'Agosto', 'Septiembre'] else False)
-        
-        # Graficamos la línea de tiempo
-        fig = px.timeline(df, x_start='Mes', x_end='Mes', y='Cultivo', color_discrete_map={'Siembra': 'green', 'Temporada Media': 'yellow', 'Cosecha': 'red'}, color='Siembra', hover_name='Cultivo')
-        
-        # Ajustamos el layout de la figura
-        fig.update_layout(yaxis_categoryorder='total ascending', xaxis=dict(dtick='M1', tickformat='%b'))
-        
+        # Graficamos el diagrama de Gantt
+        fig = px.timeline(df, y='index', x_start='siembra', x_end='cosecha', color_discrete_sequence=['red', 'green', 'blue'], title='Calendario de cultivos')
+        fig.update_yaxes(title='Cultivo')
+        fig.update_xaxes(title='Mes')
+        fig.show()
+
         # Mostramos la figura en Streamlit
         st.plotly_chart(fig, use_container_width=True)
 
