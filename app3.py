@@ -667,7 +667,7 @@ def app5():
         df = pd.DataFrame({'start': start, 'end': end}, index=cultivos)
         
         fig = px.timeline(df, x_start='start', x_end='end', color=df.index, range_x=[start[0], end[-1]],
-                          color_discrete_sequence=px.colors.qualitative.D3, labels={'color': 'Cultivos'})
+                          color_discrete_sequence=px.color.qualitative.D3, labels={'color': 'Cultivos'})
         fig.update_layout(yaxis={'categoryorder': 'total ascending'})
         fig.update_traces(marker=dict(colors=['#1f77b4', '#ff7f0e', '#2ca02c']))
         
