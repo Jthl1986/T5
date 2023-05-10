@@ -666,8 +666,8 @@ def app5():
     df = pd.DataFrame({
         'Cultivo': ['Soja'],
         'Siembra': [11],
-        'Cosecha': [5],
-        'Intermedio': [12]
+        'Cosecha': [3],
+        'Intermedio': [5]
     })
     
     # Generamos los colores de los periodos
@@ -712,8 +712,6 @@ def app5():
     
     # Mostramos el gráfico
     st.pyplot(fig, use_container_width=True)
-
-
 
 
 
