@@ -661,25 +661,27 @@ def app5():
                 
 
         # Creamos un DataFrame con los cultivos y los meses del año
-        df = pd.DataFrame({
-            'Etapa': ['Siembra', 'Crecimiento', 'Cosecha'],
-            'Inicio': ['2023-01-01', '2023-04-01', '2023-09-01'],
-            'Fin': ['2023-03-31', '2023-08-31', '2023-12-31'],
-            'Duracion': [90, 153, 122]
-        })
-        
-        df['Duracion_acumulada'] = df['Duracion'].cumsum()
-        
-        df['Mes'] = pd.to_datetime(df['Inicio']).dt.strftime('%b')
-        
-        fig = px.timeline(df, x_start='Inicio', x_end='Fin', y='Etapa', color='Etapa', 
-                          color_discrete_sequence=['#008000', '#FFA500', '#FF0000'], 
-                          hover_name='Etapa', hover_data={'Inicio': '|%B %d, %Y', 'Fin': '|%B %d, %Y'}, 
-                          range_x=['2023-01-01', '2023-12-31'], width=800, height=400)
-        
-        fig.update_yaxes(autorange="reversed")
-        fig.update_layout(title='Crop Calendar 2023', title_x=0.5, title_y=0.9, font=dict(size=14))
-        st.plotly_chart(fig)
+    df = pd.DataFrame({
+        'Etapa': ['Siembra', 'Crecimiento', 'Cosecha'],
+        'Inicio': ['2023-01-01', '2023-04-01', '2023-09-01'],
+        'Fin': ['2023-03-31', '2023-08-31', '2023-12-31'],
+        'Duracion': [90, 153, 122]
+    })
+    
+    df['Duracion_acumulada'] = df['Duracion'].cumsum()
+    
+    df['Mes'] = pd.to_datetime(df['Inicio']).dt.strftime('%b')
+    
+    fig = px.timeline(df, x_start='Inicio', x_end='Fin', y='Etapa', color='Etapa', 
+                      color_discrete_sequence=['#008000', '#FFA500', '#FF0000'], 
+                      hover_name='Etapa', hover_data={'Inicio': '|%B %d, %Y', 'Fin': '|%B %d, %Y'}, 
+                      range_x=['2023-01-01', '2023-12-31'], width=800, height=400,
+                      y_interval=1/len(df)) # Establecer altura uniforme para todas las tareas
+    
+    fig.update_yaxes(autorange="reversed")
+    fig.update_layout(title='Crop Calendar 2023', title_x=0.5, title_y=0.9, font=dict(size=14))
+    st.plotly_chart(fig)
+
 
     if dfp is not None and df1 is None:
         st.write ("Sin planteo productivo o falta cargar gastos de estructura")
