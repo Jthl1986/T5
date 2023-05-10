@@ -661,30 +661,25 @@ def app5():
                 
 
         # Creamos un DataFrame con los cultivos y los meses del año
-        cultivos = ['Soja', 'Maiz', 'Trigo', 'Girasol']
-        meses = pd.date_range(start='2021-01', end='2021-12', freq='MS').strftime('%b')
-        start = pd.date_range(start='2021-01', end='2021-12', freq='3MS')
-        end = pd.date_range(start='2021-01', end='2022-12', freq='3MS')
-        siembra = ['Siembra']*4 + ['']*8
-        temporada_media = ['']*4 + ['Temporada media']*4 + ['']*4
-        cosecha = ['']*8 + ['Cosecha']*4
-        df = pd.DataFrame({'cultivos': cultivos*3, 'start': start, 'end': end, 'siembra': siembra, 'temporada_media': temporada_media, 'cosecha': cosecha, 'meses': meses*3})
+        df = pd.DataFrame({
+            'Etapa': ['Siembra', 'Crecimiento', 'Cosecha'],
+            'Inicio': ['2023-01-01', '2023-04-01', '2023-09-01'],
+            'Fin': ['2023-03-31', '2023-08-31', '2023-12-31'],
+            'Duracion': [90, 153, 122]
+        })
         
-        fig = px.timeline(df, y='cultivos', x_start='start', x_end='end', color='siembra', labels={'meses': 'Meses'})
-        fig.update_yaxes(categoryorder='category ascending')
+        df['Duracion_acumulada'] = df['Duracion'].cumsum()
         
-        fig2 = px.timeline(df, y='cultivos', x_start='start', x_end='end', color='temporada_media', labels={'meses': 'Meses'})
-        fig2.update_yaxes(categoryorder='category ascending')
+        df['Mes'] = pd.to_datetime(df['Inicio']).dt.strftime('%b')
         
-        fig3 = px.timeline(df, y='cultivos', x_start='start', x_end='end', color='cosecha', labels={'meses': 'Meses'})
-        fig3.update_yaxes(categoryorder='category ascending')
+        fig = px.timeline(df, x_start='Inicio', x_end='Fin', y='Etapa', color='Etapa', 
+                          color_discrete_sequence=['#008000', '#FFA500', '#FF0000'], 
+                          hover_name='Etapa', hover_data={'Inicio': '|%B %d, %Y', 'Fin': '|%B %d, %Y'}, 
+                          range_x=['2023-01-01', '2023-12-31'], width=800, height=400)
         
-        st.plotly_chart(fig)
-        st.plotly_chart(fig2)
-        st.plotly_chart(fig3)
-
-
-        
+        fig.update_yaxes(autorange="reversed")
+        fig.update_layout(title='Crop Calendar 2023', title_x=0.5, title_y=0.9, font=dict(size=14))
+        fig.show()
 
     if dfp is not None and df1 is None:
         st.write ("Sin planteo productivo o falta cargar gastos de estructura")
