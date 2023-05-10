@@ -678,7 +678,7 @@ def app5():
     cosecha_color = 'tab:red'
     
     # Ajustamos el tamaño de las barras y el espacio entre ellas
-    bar_height = 0.5
+    bar_height = 0.8
     bar_space = 0.3
     
     # Para cada cultivo generamos una barra con los periodos de cada color
