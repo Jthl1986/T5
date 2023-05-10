@@ -695,7 +695,7 @@ def app5():
         # Ajustamos el espacio entre las barras
         ax.invert_yaxis()
         ax.set_yticks(df.index)
-        ax.set_yticklabels(df['Cultivo'], fontsize=8)
+        ax.set_yticklabels(df['Cultivo'], fontsize=6)
         ax.set_xticks(range(1, 13))
         ax.set_xticklabels(['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'], fontsize=8)
         ax.set_title('Calendario de cultivos')
