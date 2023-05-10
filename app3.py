@@ -663,37 +663,26 @@ def app5():
         # Creamos un DataFrame con los cultivos y los meses del año
         cultivos = ['Soja', 'Maiz', 'Trigo', 'Girasol']
         meses = pd.date_range(start='2021-01', end='2021-12', freq='MS').strftime('%b')
-        start_siembra = pd.date_range(start='2021-01', end='2021-03', freq='M')
-        end_siembra = pd.date_range(start='2021-03', end='2021-05', freq='M')
-        start_temporada_media = pd.date_range(start='2021-05', end='2021-07', freq='M')
-        end_temporada_media = pd.date_range(start='2021-07', end='2021-09', freq='M')
-        start_cosecha = pd.date_range(start='2021-09', end='2021-11', freq='M')
-        end_cosecha = pd.date_range(start='2021-11', end='2021-12', freq='M')
+        start = pd.date_range(start='2021-01', end='2021-12', freq='3MS')
+        end = pd.date_range(start='2021-05', end='2022-02', freq='3MS')
+        siembra = ['Siembra']*4 + ['']*8
+        temporada_media = ['']*4 + ['Temporada media']*4 + ['']*4
+        cosecha = ['']*8 + ['Cosecha']*4
+        df = pd.DataFrame({'cultivos': cultivos*3, 'start': start, 'end': end, 'siembra': siembra, 'temporada_media': temporada_media, 'cosecha': cosecha, 'meses': meses*3})
         
-        df_siembra = pd.DataFrame({'cultivos': cultivos, 'start': start_siembra, 'end': end_siembra, 'etapa': 'Siembra'})
-        df_temporada_media = pd.DataFrame({'cultivos': cultivos, 'start': start_temporada_media, 'end': end_temporada_media, 'etapa': 'Temporada media'})
-        df_cosecha = pd.DataFrame({'cultivos': cultivos, 'start': start_cosecha, 'end': end_cosecha, 'etapa': 'Cosecha'})
+        fig = px.timeline(df, y='cultivos', x_start='start', x_end='end', color='siembra', labels={'meses': 'Meses'})
+        fig.update_yaxes(categoryorder='category ascending')
         
-        df = pd.concat([df_siembra, df_temporada_media, df_cosecha])
-        df['meses'] = pd.Categorical(df['start'].dt.strftime('%b'), categories=meses, ordered=True)
+        fig2 = px.timeline(df, y='cultivos', x_start='start', x_end='end', color='temporada_media', labels={'meses': 'Meses'})
+        fig2.update_yaxes(categoryorder='category ascending')
         
-        fig = px.timeline(df, y='cultivos', x_start='start', x_end='end', color='etapa', color_discrete_sequence=['#009933', '#ffcc00', '#ff6666'], labels={'meses': 'Meses'})
-        fig.update_layout(
-            yaxis=dict(
-                tickmode='array',
-                tickvals=cultivos,
-                ticktext=cultivos
-            ),
-            legend=dict(
-                title='Etapa',
-                yanchor="top",
-                y=0.99,
-                xanchor="right",
-                x=0.99
-            )
-        )
+        fig3 = px.timeline(df, y='cultivos', x_start='start', x_end='end', color='cosecha', labels={'meses': 'Meses'})
+        fig3.update_yaxes(categoryorder='category ascending')
         
         st.plotly_chart(fig)
+        st.plotly_chart(fig2)
+        st.plotly_chart(fig3)
+
 
         
 
