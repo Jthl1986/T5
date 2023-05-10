@@ -672,7 +672,7 @@ def app5():
     })
     
     # Creamos la figura
-    fig, ax = plt.subplots(figsize=(4,2))
+    fig, ax = plt.subplots(figsize=(8, 3.5))
     
     # Generamos los colores de los periodos
     siembra_color = 'tab:green'
