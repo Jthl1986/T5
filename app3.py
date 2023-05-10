@@ -671,6 +671,7 @@ def app5():
     
     # Cambiamos el periodo de siembra de la Soja
     df.loc[df['Cultivo'] == 'Soja', 'Siembra'] = 11
+    df.loc[df['Cultivo'] == 'Soja', 'Intermedio'] = 12
     
     # Creamos la figura
     fig, ax = plt.subplots(figsize=(6, 1))
