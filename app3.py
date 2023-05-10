@@ -669,7 +669,7 @@ def app5():
         'Cosecha': [4, 8, 10]
     })
     
-    df.loc[df['Cultivo'] == 'Soja', 'Siembra'] = 11
+    df.loc[df['Cultivo'] == 'Soja', 'Siembra'] = 2
     df.loc[df['Cultivo'] == 'Soja', 'Intermedio'] = 12
     df.loc[df['Cultivo'] == 'Soja', 'Cosecha'] = 5
     
