@@ -701,7 +701,7 @@ def app5():
     ax.set_title('Calendario de cultivos')
     
     # Mostramos el gráfico
-    st.pyplot(fig)
+    st.pyplot(fig, use_container_width=True)
 
 
 
