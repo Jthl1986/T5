@@ -664,7 +664,7 @@ def app5():
         cultivos = ['Soja', 'Maiz', 'Trigo', 'Girasol']
         meses = pd.date_range(start='2021-01', end='2021-12', freq='MS').strftime('%b')
         start = pd.date_range(start='2021-01', end='2021-12', freq='3MS')
-        end = pd.date_range(start='2021-05', end='2022-02', freq='3MS')
+        end = pd.date_range(start='2021-01', end='2022-12', freq='3MS')
         siembra = ['Siembra']*4 + ['']*8
         temporada_media = ['']*4 + ['Temporada media']*4 + ['']*4
         cosecha = ['']*8 + ['Cosecha']*4
