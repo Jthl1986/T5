@@ -701,6 +701,8 @@ def app5():
         ax.set_title('Calendario de cultivos', fontsize=6)
         ax.margins(y=bar_space)
         ax.yaxis.grid(True)
+        ax.xaxis.grid(False)
+    # o también puedes usar ax.grid(False) para quitar todas las líneas del grid
     
     # Mostramos el gráfico
     st.pyplot(fig, use_container_width=True)
