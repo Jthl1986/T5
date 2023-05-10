@@ -700,7 +700,7 @@ def app5():
         ax.set_xticklabels(['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'], fontsize=6)
         ax.set_title('Calendario de cultivos', fontsize=6)
         ax.margins(y=bar_space)
-        ax.grid(True)
+        ax.grid(True, axis='y')
     
     # Mostramos el gráfico
     st.pyplot(fig, use_container_width=True)
