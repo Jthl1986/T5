@@ -700,8 +700,8 @@ def app5():
         ax.set_xticklabels(['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'], fontsize=6)
         ax.set_title('Calendario de cultivos', fontsize=6)
         ax.margins(y=bar_space)
-        ax.yaxis.grid(True)
-        ax.xaxis.grid(False)
+        ax.yaxis.grid(False)
+        ax.xaxis.grid(True)
     # o también puedes usar ax.grid(False) para quitar todas las líneas del grid
     
     # Mostramos el gráfico
