@@ -678,7 +678,7 @@ def app5():
     cosecha_color = 'tab:red'
     
     # Ajustamos el tamaño de las barras y el espacio entre ellas
-    bar_height = 0.3
+    bar_height = 1
     bar_space = 2
     
     # Para cada cultivo generamos una barra con los periodos de cada color
@@ -700,7 +700,7 @@ def app5():
         ax.set_xticklabels(['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'], fontsize=6)
         ax.set_title('Calendario de cultivos')
         ax.margins(y=bar_space)
-        ax.grid(False)
+        ax.grid(True)
     
     # Mostramos el gráfico
     st.pyplot(fig, use_container_width=True)
