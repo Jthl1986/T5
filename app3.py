@@ -661,13 +661,40 @@ def app5():
                 
 
         # Creamos un DataFrame con los cultivos y los meses del año
-        cultivos = ['Soja 1ra', 'Soja 2da', 'Maiz', 'Trigo'] 
-        meses = pd.date_range(start='2021-01', end='2021-12', freq='MS').strftime('%b')[:12]  # Tomamos solo los primeros 9 meses
-        start = pd.date_range(start='2021-01', end='2021-05', freq='M') + pd.DateOffset(years=1)  # Añadimos un año para tener 12 meses
-        end = pd.date_range(start='2021-05', end='2021-09', freq='M') + pd.DateOffset(years=1)  # Añadimos un año para tener 12 meses
-        df = pd.DataFrame({'cultivos': cultivos, 'start': start, 'end': end, 'meses': meses})
-        fig = px.timeline(df, y='cultivos', x_start='start', x_end='end', color='cultivos', color_discrete_sequence=px.colors.qualitative.D3, labels={'meses': 'Meses'})
+        cultivos = ['Soja', 'Maiz', 'Trigo', 'Girasol']
+        meses = pd.date_range(start='2021-01', end='2021-12', freq='MS').strftime('%b')
+        start_siembra = pd.date_range(start='2021-01', end='2021-03', freq='M')
+        end_siembra = pd.date_range(start='2021-03', end='2021-06', freq='M')
+        start_temporada_media = pd.date_range(start='2021-06', end='2021-08', freq='M')
+        end_temporada_media = pd.date_range(start='2021-08', end='2021-10', freq='M')
+        start_cosecha = pd.date_range(start='2021-10', end='2021-12', freq='M')
+        end_cosecha = pd.date_range(start='2021-12', end='2022-02', freq='M')
+        
+        df_siembra = pd.DataFrame({'cultivos': cultivos, 'start': start_siembra, 'end': end_siembra, 'etapa': 'Siembra'})
+        df_temporada_media = pd.DataFrame({'cultivos': cultivos, 'start': start_temporada_media, 'end': end_temporada_media, 'etapa': 'Temporada media'})
+        df_cosecha = pd.DataFrame({'cultivos': cultivos, 'start': start_cosecha, 'end': end_cosecha, 'etapa': 'Cosecha'})
+        
+        df = pd.concat([df_siembra, df_temporada_media, df_cosecha])
+        df['meses'] = pd.Categorical(df['start'].dt.strftime('%b'), categories=meses, ordered=True)
+        
+        fig = px.timeline(df, y='cultivos', x_start='start', x_end='end', color='etapa', color_discrete_sequence=['#009933', '#ffcc00', '#ff6666'], labels={'meses': 'Meses'})
+        fig.update_layout(
+            yaxis=dict(
+                tickmode='array',
+                tickvals=cultivos,
+                ticktext=cultivos
+            ),
+            legend=dict(
+                title='Etapa',
+                yanchor="top",
+                y=0.99,
+                xanchor="right",
+                x=0.99
+            )
+        )
+        
         st.plotly_chart(fig)
+
         
 
     if dfp is not None and df1 is None:
