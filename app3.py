@@ -661,6 +661,7 @@ def app5():
                 
 
         # Creamos un DataFrame con los cultivos y los meses del año
+
     df = pd.DataFrame({
         'Etapa': ['Siembra', 'Crecimiento', 'Cosecha'],
         'Inicio': ['2023-01-01', '2023-04-01', '2023-09-01'],
@@ -676,12 +677,13 @@ def app5():
                       color_discrete_sequence=['#008000', '#FFA500', '#FF0000'], 
                       hover_name='Etapa', hover_data={'Inicio': '|%B %d, %Y', 'Fin': '|%B %d, %Y'}, 
                       range_x=['2023-01-01', '2023-12-31'], width=800, height=400,
-                      y_interval=1/len(df)) # Establecer altura uniforme para todas las tareas
+                      template='plotly_white') # Establecer la plantilla para controlar la altura de las tareas
     
-    fig.update_yaxes(autorange="reversed")
+    fig.update_yaxes(autorange="reversed", tickmode='array', tickvals=[i+0.5 for i in range(len(df))], 
+                     ticktext=df['Etapa'], tickfont=dict(size=14)) # Establecer la altura uniforme para todas las tareas
+    
     fig.update_layout(title='Crop Calendar 2023', title_x=0.5, title_y=0.9, font=dict(size=14))
     st.plotly_chart(fig)
-
 
     if dfp is not None and df1 is None:
         st.write ("Sin planteo productivo o falta cargar gastos de estructura")
