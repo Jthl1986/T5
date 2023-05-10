@@ -679,7 +679,7 @@ def app5():
         
         fig.update_yaxes(autorange="reversed")
         fig.update_layout(title='Crop Calendar 2023', title_x=0.5, title_y=0.9, font=dict(size=14))
-        st.pyplot(fig)
+        st.plotly_chart(fig)
 
     if dfp is not None and df1 is None:
         st.write ("Sin planteo productivo o falta cargar gastos de estructura")
