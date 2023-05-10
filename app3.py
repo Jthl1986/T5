@@ -672,7 +672,7 @@ def app5():
     })
     
     # Creamos la figura
-    fig, ax = plt.subplots(figsize=(8, 3.5))
+    fig, ax = plt.subplots(figsize=(6, 3))
     
     # Generamos los colores de los periodos
     siembra_color = 'tab:green'
@@ -685,20 +685,24 @@ def app5():
         siembra = row['Siembra']
         intermedio = row['Intermedio']
         cosecha = row['Cosecha']
-        
-        ax.barh(cultivo, intermedio-siembra, left=siembra, color=intermedio_color, height=0.5)
-        ax.barh(cultivo, cosecha-intermedio, left=intermedio, color=cosecha_color, height=0.5)
-        ax.barh(cultivo, siembra, color=siembra_color, height=0.5)
+    
+        ax.barh(cultivo, (intermedio-siembra)/2, left=siembra, color=intermedio_color, height=0.25)
+        ax.barh(cultivo, (cosecha-intermedio)/2, left=intermedio, color=cosecha_color, height=0.25)
+        ax.barh(cultivo, siembra/2, color=siembra_color, height=0.25)
     
     # Configuramos el gráfico
-    ax.set_xlabel('Meses')
-    ax.set_ylabel('Cultivo')
+    ax.set_xlabel('Meses', fontsize=8)
+    ax.set_ylabel('Cultivo', fontsize=8)
     ax.set_yticks(df['Cultivo'])
-    ax.set_yticklabels(df['Cultivo'])
+    ax.set_yticklabels(df['Cultivo'], fontsize=8)
     ax.set_xticks(range(1, 13))
-    ax.set_xticklabels(['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'])
+    ax.set_xticklabels(['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'], fontsize=8)
     ax.invert_yaxis()
-    ax.set_title('Calendario de cultivos')
+    ax.set_title('Calendario de cultivos', fontsize=10)
+    
+    # Modificamos los parámetros de los ticks
+    ax.tick_params(axis='x', labelsize=8)
+    ax.tick_params(axis='y', labelsize=8)
     
     # Mostramos el gráfico
     st.pyplot(fig, use_container_width=True)
