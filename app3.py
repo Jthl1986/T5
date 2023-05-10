@@ -679,7 +679,7 @@ def app5():
     
     # Ajustamos el tamaño de las barras y el espacio entre ellas
     bar_height = 0.8
-    bar_space = 0.5
+    bar_space = 0.1
     
     # Para cada cultivo generamos una barra con los periodos de cada color
     for i, row in df.iterrows():
