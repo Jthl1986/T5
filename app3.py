@@ -664,11 +664,11 @@ def app5():
         cultivos = ['Soja', 'Maiz', 'Trigo', 'Girasol']
         meses = pd.date_range(start='2021-01', end='2021-12', freq='MS').strftime('%b')
         start_siembra = pd.date_range(start='2021-01', end='2021-03', freq='M')
-        end_siembra = pd.date_range(start='2021-03', end='2021-06', freq='M')
-        start_temporada_media = pd.date_range(start='2021-06', end='2021-08', freq='M')
-        end_temporada_media = pd.date_range(start='2021-08', end='2021-10', freq='M')
-        start_cosecha = pd.date_range(start='2021-10', end='2021-12', freq='M')
-        end_cosecha = pd.date_range(start='2021-12', end='2022-02', freq='M')
+        end_siembra = pd.date_range(start='2021-03', end='2021-05', freq='M')
+        start_temporada_media = pd.date_range(start='2021-05', end='2021-07', freq='M')
+        end_temporada_media = pd.date_range(start='2021-07', end='2021-09', freq='M')
+        start_cosecha = pd.date_range(start='2021-09', end='2021-11', freq='M')
+        end_cosecha = pd.date_range(start='2021-11', end='2021-12', freq='M')
         
         df_siembra = pd.DataFrame({'cultivos': cultivos, 'start': start_siembra, 'end': end_siembra, 'etapa': 'Siembra'})
         df_temporada_media = pd.DataFrame({'cultivos': cultivos, 'start': start_temporada_media, 'end': end_temporada_media, 'etapa': 'Temporada media'})
