@@ -665,10 +665,15 @@ def app5():
 
     df = pd.DataFrame({
         'Cultivo': ['Soja'],
-        'Siembra': [11],
-        'Cosecha': [3],
-        'Intermedio': [5]
+        'Siembra': [1],
+        'Cosecha': [12],
+        'Intermedio': [0]
     })
+    
+    # Cambiamos los periodos de cada cultivo
+    df.loc[df['Cultivo'] == 'Soja', 'Siembra'] = 11
+    df.loc[df['Cultivo'] == 'Soja', 'Intermedio'] = 3
+    df.loc[df['Cultivo'] == 'Soja', 'Cosecha'] = 5
     
     # Generamos los colores de los periodos
     siembra_color = 'tab:green'
