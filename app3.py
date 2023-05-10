@@ -661,7 +661,7 @@ def app5():
                 
 
         # Creamos un DataFrame con los cultivos y los meses del año
-        cultivos = ['Soja 1ra', 'Soja 2da', 'Maiz', 'Trigo'] * 3  # Repetimos la lista 3 veces para tener 12 elementos
+        cultivos = ['Soja 1ra', 'Soja 2da', 'Maiz', 'Trigo'] 
         meses = pd.date_range(start='2021-01', end='2021-12', freq='MS').strftime('%b')[:12]  # Tomamos solo los primeros 9 meses
         start = pd.date_range(start='2021-01', end='2021-05', freq='M') + pd.DateOffset(years=1)  # Añadimos un año para tener 12 meses
         end = pd.date_range(start='2021-05', end='2021-09', freq='M') + pd.DateOffset(years=1)  # Añadimos un año para tener 12 meses
