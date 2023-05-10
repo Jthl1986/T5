@@ -664,13 +664,13 @@ def app5():
     # Creamos el dataframe con los datos de cada cultivo
     df = pd.DataFrame({
         'Cultivo': ['Soja', 'Maíz', 'Trigo'],
-        'Siembra': [1, 1, 1],
+        'Siembra': [11, 1, 1],
         'Intermedio': [2, 3, 5],
         'Cosecha': [4, 8, 10]
     })
     
     # Cambiamos el periodo de siembra de la Soja
-    df.loc[df['Cultivo'] == 'Soja', 'Siembra'] = 11
+    df.loc[df['Cultivo'] == 'Soja', 'Siembra'] = 12
     
     # Creamos la figura
     fig, ax = plt.subplots(figsize=(6, 1))
