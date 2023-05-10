@@ -665,8 +665,8 @@ def app5():
     df = pd.DataFrame({
         'Cultivo': ['Soja'],
         'Siembra': [1],
-        'Intermedio': [4],
-        'Cosecha': [6]
+        'Cosecha': [4],
+        'Intermedio': [2]
     })
     
     #df.loc[df['Cultivo'] == 'Soja', 'Siembra'] = 3  
