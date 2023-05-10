@@ -698,7 +698,7 @@ def app5():
         ax.set_yticklabels(df['Cultivo'], fontsize=6)
         ax.set_xticks(range(1, 13))
         ax.set_xticklabels(['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'], fontsize=6)
-        ax.set_title('Calendario de cultivos')
+        ax.set_title('Calendario de cultivos', fontsize=6)
         ax.margins(y=bar_space)
         ax.grid(True)
     
