@@ -664,16 +664,11 @@ def app5():
     # Creamos el dataframe con los datos de cada cultivo
     df = pd.DataFrame({
         'Cultivo': ['Soja', 'Maíz', 'Trigo'],
-        'Siembra': [11, 1, 1],
+        'Siembra': [11, 11, 11],
         'Intermedio': [2, 3, 5],
         'Cosecha': [4, 8, 10]
     })
     
-    df.loc[df['Cultivo'] == 'Soja', 'Siembra'] = 11
-    df.loc[df['Cultivo'] == 'Soja', 'Intermedio'] = 12
-    df.loc[df['Cultivo'] == 'Soja', 'Cosecha'] = 5
-    
-    # Modificamos los periodos de siembra y cosecha de la Soja
     df.loc[df['Cultivo'] == 'Soja', 'Siembra'] = 11
     df.loc[df['Cultivo'] == 'Soja', 'Intermedio'] = 12
     df.loc[df['Cultivo'] == 'Soja', 'Cosecha'] = 5
