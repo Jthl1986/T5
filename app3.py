@@ -663,53 +663,45 @@ def app5():
         # Creamos un DataFrame con los cultivos y los meses del año
 
     
-    # Datos para el cultivo de soja
-    df_soja = pd.DataFrame({
-        'Cultivo': ['Soja', 'Soja', 'Soja'],
-        'Etapa': ['Siembra', 'Crecimiento', 'Cosecha'],
-        'Inicio': ['2023-01-01', '2023-04-01', '2023-09-01'],
-        'Fin': ['2023-03-31', '2023-08-31', '2023-12-31'],
-        'Duracion': [90, 153, 122]
+    # Creamos el dataframe con los datos de cada cultivo
+    df = pd.DataFrame({
+        'Cultivo': ['Soja', 'Maíz', 'Trigo'],
+        'Siembra': [1, 1, 1],
+        'Intermedio': [2, 3, 5],
+        'Cosecha': [4, 8, 10]
     })
     
-    # Datos para el cultivo de maíz
-    df_maiz = pd.DataFrame({
-        'Cultivo': ['Maíz', 'Maíz', 'Maíz'],
-        'Etapa': ['Siembra', 'Crecimiento', 'Cosecha'],
-        'Inicio': ['2023-02-01', '2023-05-01', '2023-10-01'],
-        'Fin': ['2023-04-30', '2023-09-30', '2024-01-31'],
-        'Duracion': [89, 153, 122]
-    })
+    # Creamos la figura
+    fig, ax = plt.subplots()
     
-    # Concatenar los datos en un solo dataframe
-    df = pd.concat([df_soja, df_maiz])
+    # Generamos los colores de los periodos
+    siembra_color = 'tab:green'
+    intermedio_color = 'tab:orange'
+    cosecha_color = 'tab:red'
     
-    # Calcular la duración acumulada de cada etapa
-    df['Duracion_acumulada'] = df.groupby('Cultivo')['Duracion'].cumsum()
+    # Para cada cultivo generamos una barra con los periodos de cada color
+    for i, row in df.iterrows():
+        cultivo = row['Cultivo']
+        siembra = row['Siembra']
+        intermedio = row['Intermedio']
+        cosecha = row['Cosecha']
+        
+        ax.barh(cultivo, intermedio-siembra, left=siembra, color=intermedio_color, height=0.5)
+        ax.barh(cultivo, cosecha-intermedio, left=intermedio, color=cosecha_color, height=0.5)
+        ax.barh(cultivo, siembra, color=siembra_color, height=0.5)
     
-    # Convertir la columna "Inicio" a formato datetime
-    df['Inicio'] = pd.to_datetime(df['Inicio'])
+    # Configuramos el gráfico
+    ax.set_xlabel('Meses')
+    ax.set_ylabel('Cultivo')
+    ax.set_yticks(df['Cultivo'])
+    ax.set_yticklabels(df['Cultivo'])
+    ax.set_xticks(range(1, 13))
+    ax.set_xticklabels(['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'])
+    ax.invert_yaxis()
+    ax.set_title('Calendario de cultivos')
     
-    # Definir los colores para cada etapa
-    colores = {'Siembra': '#008000', 'Crecimiento': '#FFA500', 'Cosecha': '#FF0000'}
-    
-    # Crear la figura con dos barras, una para cada cultivo
-    fig = px.timeline(df, x_start='Inicio', x_end='Fin', y='Etapa', color='Etapa', 
-                      color_discrete_map=colores, opacity=0.7,
-                      hover_name='Cultivo', hover_data={'Inicio': '|%B %d, %Y', 'Fin': '|%B %d, %Y'},
-                      range_x=['2023-01-01', '2024-01-31'], width=800, height=400,
-                      facet_col='Cultivo')
-    
-    # Configurar el diseño de la figura
-    fig.update_yaxes(autorange="reversed", showgrid=False)
-    fig.update_xaxes(showgrid=True, gridwidth=1, gridcolor='lightgray')
-    fig.update_layout(title='Crop Calendar 2023-2024', title_x=0.5, title_y=0.95, font=dict(size=14),
-                      legend=dict(orientation='h', yanchor='bottom', y=1.02, xanchor='right', x=1))
-                      
-    # Mostrar la figura en Streamlit
-    st.plotly_chart(fig)
-    
-
+    # Mostramos el gráfico
+    st.pyplot(fig)
 
 
 
