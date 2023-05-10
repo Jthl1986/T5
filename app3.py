@@ -662,19 +662,13 @@ def app5():
     
     # Creamos el dataframe con los datos de cada cultivo
     # Creamos el dataframe con los datos de cada cultivo
+
     df = pd.DataFrame({
         'Cultivo': ['Soja'],
-        'Siembra': [1],
-        'Cosecha': [4],
-        'Intermedio': [3]
+        'Siembra': [11],
+        'Cosecha': [5],
+        'Intermedio': [12]
     })
-    
-    #df.loc[df['Cultivo'] == 'Soja', 'Siembra'] = 3  
-    #df.loc[df['Cultivo'] == 'Soja', 'Intermedio'] = 12
-    #df.loc[df['Cultivo'] == 'Soja', 'Cosecha'] = 6
-    
-    # Creamos la figura
-    fig, ax = plt.subplots(figsize=(6, 1))
     
     # Generamos los colores de los periodos
     siembra_color = 'tab:green'
@@ -685,6 +679,9 @@ def app5():
     bar_height = 0.7
     bar_space = 0.1
     
+    # Creamos la figura
+    fig, ax = plt.subplots(figsize=(6, 1))
+    
     # Para cada cultivo generamos una barra con los periodos de cada color
     for i, row in df.iterrows():
         cultivo = row['Cultivo']
@@ -692,9 +689,14 @@ def app5():
         intermedio = row['Intermedio']
         cosecha = row['Cosecha']
     
-        ax.barh(cultivo, intermedio-siembra, left=siembra, color=intermedio_color, height=bar_height, linewidth=0)
-        ax.barh(cultivo, cosecha-intermedio, left=intermedio, color=cosecha_color, height=bar_height, linewidth=0)
+        # Barra de Siembra
         ax.barh(cultivo, siembra, color=siembra_color, height=bar_height, linewidth=0)
+        
+        # Barra de Intermedio
+        ax.barh(cultivo, intermedio-siembra, left=siembra, color=intermedio_color, height=bar_height, linewidth=0)
+    
+        # Barra de Cosecha
+        ax.barh(cultivo, cosecha-intermedio, left=intermedio, color=cosecha_color, height=bar_height, linewidth=0)
     
         # Ajustamos el espacio entre las barras
         ax.invert_yaxis()
@@ -706,10 +708,11 @@ def app5():
         ax.margins(y=bar_space)
         ax.yaxis.grid(False)
         ax.xaxis.grid(True)
-    # o también puedes usar ax.grid(False) para quitar todas las líneas del grid
+        # o también puedes usar ax.grid(False) para quitar todas las líneas del grid
     
     # Mostramos el gráfico
     st.pyplot(fig, use_container_width=True)
+
 
 
 
