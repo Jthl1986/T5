@@ -662,27 +662,53 @@ def app5():
 
         # Creamos un DataFrame con los cultivos y los meses del año
 
-
-    df = pd.DataFrame({
+    
+    # Datos para el cultivo de soja
+    df_soja = pd.DataFrame({
+        'Cultivo': ['Soja', 'Soja', 'Soja'],
         'Etapa': ['Siembra', 'Crecimiento', 'Cosecha'],
         'Inicio': ['2023-01-01', '2023-04-01', '2023-09-01'],
         'Fin': ['2023-03-31', '2023-08-31', '2023-12-31'],
         'Duracion': [90, 153, 122]
     })
     
-    df['Duracion_acumulada'] = df['Duracion'].cumsum()
+    # Datos para el cultivo de maíz
+    df_maiz = pd.DataFrame({
+        'Cultivo': ['Maíz', 'Maíz', 'Maíz'],
+        'Etapa': ['Siembra', 'Crecimiento', 'Cosecha'],
+        'Inicio': ['2023-02-01', '2023-05-01', '2023-10-01'],
+        'Fin': ['2023-04-30', '2023-09-30', '2024-01-31'],
+        'Duracion': [89, 153, 122]
+    })
     
-    df['Mes'] = pd.to_datetime(df['Inicio']).dt.strftime('%b')
+    # Concatenar los datos en un solo dataframe
+    df = pd.concat([df_soja, df_maiz])
     
+    # Calcular la duración acumulada de cada etapa
+    df['Duracion_acumulada'] = df.groupby('Cultivo')['Duracion'].cumsum()
+    
+    # Convertir la columna "Inicio" a formato datetime
+    df['Inicio'] = pd.to_datetime(df['Inicio'])
+    
+    # Definir los colores para cada etapa
+    colores = {'Siembra': '#008000', 'Crecimiento': '#FFA500', 'Cosecha': '#FF0000'}
+    
+    # Crear la figura con dos barras, una para cada cultivo
     fig = px.timeline(df, x_start='Inicio', x_end='Fin', y='Etapa', color='Etapa', 
-                      color_discrete_sequence=['#008000', '#FFA500', '#FF0000'], 
-                      hover_name='Etapa', hover_data={'Inicio': '|%B %d, %Y', 'Fin': '|%B %d, %Y'}, 
-                      range_x=['2023-01-01', '2023-12-31'], width=800, height=400,
-                      facet_row='Etapa')
+                      color_discrete_map=colores, opacity=0.7,
+                      hover_name='Cultivo', hover_data={'Inicio': '|%B %d, %Y', 'Fin': '|%B %d, %Y'},
+                      range_x=['2023-01-01', '2024-01-31'], width=800, height=400,
+                      facet_col='Cultivo')
     
-    fig.update_yaxes(autorange="reversed")
-    fig.update_layout(title='Crop Calendar 2023', title_x=0.5, title_y=0.9, font=dict(size=14))
+    # Configurar el diseño de la figura
+    fig.update_yaxes(autorange="reversed", showgrid=False)
+    fig.update_xaxes(showgrid=True, gridwidth=1, gridcolor='lightgray')
+    fig.update_layout(title='Crop Calendar 2023-2024', title_x=0.5, title_y=0.95, font=dict(size=14),
+                      legend=dict(orientation='h', yanchor='bottom', y=1.02, xanchor='right', x=1))
+                      
+    # Mostrar la figura en Streamlit
     st.plotly_chart(fig)
+    
 
 
 
