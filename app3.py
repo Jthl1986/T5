@@ -686,6 +686,7 @@ def app5():
 
 
 
+
     if dfp is not None and df1 is None:
         st.write ("Sin planteo productivo o falta cargar gastos de estructura")
         
