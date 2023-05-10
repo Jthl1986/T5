@@ -659,10 +659,8 @@ def app5():
                 plt.box(False)
                 left.pyplot()
                 
-
-        # Creamos un DataFrame con los cultivos y los meses del año
-
     
+    # Creamos el dataframe con los datos de cada cultivo
     # Creamos el dataframe con los datos de cada cultivo
     df = pd.DataFrame({
         'Cultivo': ['Soja', 'Maíz', 'Trigo'],
@@ -672,12 +670,16 @@ def app5():
     })
     
     # Creamos la figura
-    fig, ax = plt.subplots(figsize=(6, 3))
+    fig, ax = plt.subplots()
     
     # Generamos los colores de los periodos
     siembra_color = 'tab:green'
     intermedio_color = 'tab:orange'
     cosecha_color = 'tab:red'
+    
+    # Ajustamos el tamaño de las barras y el espacio entre ellas
+    bar_height = 0.3
+    bar_space = 0.2
     
     # Para cada cultivo generamos una barra con los periodos de cada color
     for i, row in df.iterrows():
@@ -686,26 +688,23 @@ def app5():
         intermedio = row['Intermedio']
         cosecha = row['Cosecha']
     
-        ax.barh(cultivo, (intermedio-siembra)/2, left=siembra, color=intermedio_color, height=0.25)
-        ax.barh(cultivo, (cosecha-intermedio)/2, left=intermedio, color=cosecha_color, height=0.25)
-        ax.barh(cultivo, siembra/2, color=siembra_color, height=0.25)
+        ax.barh(cultivo, intermedio-siembra, left=siembra, color=intermedio_color, height=bar_height, linewidth=0)
+        ax.barh(cultivo, cosecha-intermedio, left=intermedio, color=cosecha_color, height=bar_height, linewidth=0)
+        ax.barh(cultivo, siembra, color=siembra_color, height=bar_height, linewidth=0)
     
-    # Configuramos el gráfico
-    ax.set_xlabel('Meses', fontsize=8)
-    ax.set_ylabel('Cultivo', fontsize=8)
-    ax.set_yticks(df['Cultivo'])
-    ax.set_yticklabels(df['Cultivo'], fontsize=8)
-    ax.set_xticks(range(1, 13))
-    ax.set_xticklabels(['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'], fontsize=8)
-    ax.invert_yaxis()
-    ax.set_title('Calendario de cultivos', fontsize=10)
-    
-    # Modificamos los parámetros de los ticks
-    ax.tick_params(axis='x', labelsize=8)
-    ax.tick_params(axis='y', labelsize=8)
+        # Ajustamos el espacio entre las barras
+        ax.invert_yaxis()
+        ax.set_yticks(df.index)
+        ax.set_yticklabels(df['Cultivo'], fontsize=8)
+        ax.set_xticks(range(1, 13))
+        ax.set_xticklabels(['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'], fontsize=8)
+        ax.set_title('Calendario de cultivos')
+        ax.margins(y=bar_space)
+        ax.grid(False)
     
     # Mostramos el gráfico
     st.pyplot(fig, use_container_width=True)
+
 
 
 
