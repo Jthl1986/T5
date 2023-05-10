@@ -664,6 +664,7 @@ def app5():
 
 
 
+
     df = pd.DataFrame({
         'Etapa': ['Siembra', 'Crecimiento', 'Cosecha'],
         'Inicio': ['2023-01-01', '2023-04-01', '2023-09-01'],
@@ -675,7 +676,7 @@ def app5():
     
     df['Mes'] = pd.to_datetime(df['Inicio']).dt.strftime('%b')
     
-    fig = px.timeline(df, x_start='Inicio', x_end='Fin', animation_frame='Etapa', color='Etapa', 
+    fig = px.timeline(df, x_start='Inicio', x_end='Fin', base='Etapa', color='Etapa', 
                       color_discrete_sequence=['#008000', '#FFA500', '#FF0000'], 
                       hover_name='Etapa', hover_data={'Inicio': '|%B %d, %Y', 'Fin': '|%B %d, %Y'}, 
                       range_x=['2023-01-01', '2023-12-31'], width=800, height=400)
