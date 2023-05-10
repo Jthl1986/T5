@@ -664,7 +664,7 @@ def app5():
     # Creamos el dataframe con los datos de cada cultivo
     df = pd.DataFrame({
         'Cultivo': ['Soja', 'Maíz', 'Trigo'],
-        'Siembra': [11, 1, 1],
+        'Siembra': [5, 1, 1],
         'Intermedio': [2, 3, 5],
         'Cosecha': [4, 8, 10]
     })
