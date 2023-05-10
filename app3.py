@@ -671,7 +671,7 @@ def app5():
     
     df.loc[df['Cultivo'] == 'Soja', 'Siembra'] = 3  
     df.loc[df['Cultivo'] == 'Soja', 'Intermedio'] = 12
-    df.loc[df['Cultivo'] == 'Soja', 'Cosecha'] = 5
+    df.loc[df['Cultivo'] == 'Soja', 'Cosecha'] = 6
     
     # Creamos la figura
     fig, ax = plt.subplots(figsize=(6, 1))
